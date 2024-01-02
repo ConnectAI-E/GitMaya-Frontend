@@ -1,30 +1,44 @@
-# React + TypeScript + Vite
+<div align="center">
+    <a href="https://gitmaya.com" title="React Hook Form - Simple React forms validation">
+        <img src="https://github.com/ConnectAI-E/GitMaya-Website/assets/50035229/15a87dd2-efb9-4f40-8002-9ac91983da5b" alt="Gitmaya - Next generation gitops for boosting developer teams productivity" />
+    </a>
+</div>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align='center'>
+  <samp>Next generation gitops for boosting developer-teams productivity <sup><em>(FULL OPENSOURCE)</em></sup></samp>
+</p>
 
-Currently, two official plugins are available:
+<p align="center">
+    <a href="https://gitmaya.com">🖥 Use Now </a>
+</p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+> [!IMPORTANT]
+> Welcome to the repository for the GitMaya frontend  If you're eager to contribute, head over to the open-source deployment of the severe-side GitMaya code at [GitMaya](https://github.com/ConnectAI-E/GitMaya).
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-- Configure the top-level `parserOptions` property like this:
+## Alternatives
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+`gitmaya` is inspired by the following tools.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- [pullpo](https://pullpo.io/)
+- [graphite](https://graphite.dev/)
+- [typoapp](https://typoapp.io/)
+
+They work well but have different focuses and feature sets, try them out as well :)
+
+## Contribution Map
+
+There are four repositories for gitmaya, and this is one of them:
+
+|     | Repository                                                          | Language   | Purpose                            |
+| --- | ------------------------------------------------------------------- | ---------- | ---------------------------------- |
+|     | [GitMaya](https://github.com/ConnectAI-E/GitMaya)                   | Python     | Server-side code                   |
+|   👉   | [GitMaya-Frontend](https://github.com/ConnectAI-E/GitMaya-Frontend) | TypeScript | Frontend code                      |
+|   | [GitMaya-WebSite](https://github.com/ConnectAI-E/GitMaya-Website)   | TypeScript | Official website and documentation |
+|     | [GitMaya-Cli](https://github.com/ConnectAI-E/GitMaya-Cli)           | Python     | Super Git management tool          |
+
+
+## License
+
+MIT License © 2024 [ConnectAI-E](https://github.com/connectai-e)
