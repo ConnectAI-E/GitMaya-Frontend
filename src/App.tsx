@@ -1,5 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from '@/routes/home';
+import Login from '@/routes/login';
+
 import Layout from '@/layout';
 import useDarkMode from 'use-dark-mode';
 
@@ -11,6 +13,10 @@ const router = createBrowserRouter([
 			{
 				index: true,
 				element: <Home />,
+			},
+			{
+				path: 'login',
+				element: <Login />,
 			},
 		],
 	},

@@ -23,6 +23,12 @@ dependencies:
   i18next:
     specifier: ^23.7.13
     version: 23.7.13
+  i18next-browser-languagedetector:
+    specifier: ^7.2.0
+    version: 7.2.0
+  i18next-xhr-backend:
+    specifier: ^3.2.2
+    version: 3.2.2
   lodash-es:
     specifier: ^4.17.21
     version: 4.17.21
@@ -76,9 +82,15 @@ devDependencies:
   eslint-plugin-react-refresh:
     specifier: ^0.4.5
     version: 0.4.5(eslint@8.56.0)
+  husky:
+    specifier: ^8.0.0
+    version: 8.0.3
   postcss:
     specifier: ^8.4.32
     version: 8.4.32
+  prettier:
+    specifier: ^3.1.1
+    version: 3.1.1
   tailwindcss:
     specifier: ^3.4.0
     version: 3.4.0
@@ -3971,6 +3983,25 @@ packages:
       void-elements: 3.1.0
     dev: false
 
+  /husky@8.0.3:
+    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dev: true
+
+  /i18next-browser-languagedetector@7.2.0:
+    resolution: {integrity: sha512-U00DbDtFIYD3wkWsr2aVGfXGAj2TgnELzOX9qv8bT0aJtvPV9CRO77h+vgmHFBMe7LAxdwvT/7VkCWGya6L3tA==}
+    dependencies:
+      '@babel/runtime': 7.23.7
+    dev: false
+
+  /i18next-xhr-backend@3.2.2:
+    resolution: {integrity: sha512-OtRf2Vo3IqAxsttQbpjYnmMML12IMB5e0fc5B7qKJFLScitYaXa1OhMX0n0X/3vrfFlpHL9Ro/H+ps4Ej2j7QQ==}
+    deprecated: replaced by i18next-http-backend
+    dependencies:
+      '@babel/runtime': 7.23.7
+    dev: false
+
   /i18next@23.7.13:
     resolution: {integrity: sha512-DbCPlw6VmURSZa43iOnycxq9o15e+WuBWDBZ3aj+gQZcDz4sgnuKwrcwmP1n8gSSCwCN7CRFGTpnwTd93A16Mg==}
     dependencies:
@@ -4421,6 +4452,12 @@ packages:
   /prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
+    dev: true
+
+  /prettier@3.1.1:
+    resolution: {integrity: sha512-22UbSzg8luF4UuZtzgiUOfcGM8s4tjBv6dJRT7j275NXsy2jb4aJa4NNveul5x4eqlF1wuhuR2RElK71RvmVaw==}
+    engines: {node: '>=14'}
+    hasBin: true
     dev: true
 
   /proxy-from-env@1.1.0:

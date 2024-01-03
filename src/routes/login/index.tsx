@@ -1,9 +1,9 @@
-const Home = () => {
+const Login = () => {
 	return (
 		<h1 className='h-screen text-black dark:text-white text-center'>
-			GitMaya
+			Login
 		</h1>
 	);
 };
 
-export default Home;
+export default Login;
