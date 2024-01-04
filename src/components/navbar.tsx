@@ -7,7 +7,6 @@ import {
   NavbarItem,
   NavbarMenuItem
 } from '@nextui-org/navbar';
-import { Button } from '@nextui-org/button';
 import { Link } from '@nextui-org/link';
 
 import { link as linkStyles } from '@nextui-org/theme';
@@ -15,10 +14,12 @@ import { link as linkStyles } from '@nextui-org/theme';
 import { siteConfig } from '@/config/site';
 import clsx from 'clsx';
 import { GithubIcon, DiscordIcon, Logo } from '@/components/icons';
-import { ThemeSwitch } from '@/components/theme-switch';
+// import { ThemeSwitch } from '@/components/theme-switch';
 import { I18nSwitch } from '@/components/i18n-switch';
 
 import { useTranslation } from 'react-i18next';
+import { Link as RouterLink } from 'react-router-dom';
+
 export const Navbar = () => {
   const { t } = useTranslation();
   return (
@@ -27,7 +28,9 @@ export const Navbar = () => {
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <Link className="flex justify-start items-center gap-1" href="/">
             <Logo />
-            <p className="font-bold text-inherit">GitMaya</p>
+            <div className="text-xl font-black mx-4 text-gradient rainbow-text">
+              GitMaya
+            </div>
           </Link>
         </NavbarBrand>
         <ul className="hidden lg:flex gap-4 justify-start ml-2">
@@ -58,20 +61,24 @@ export const Navbar = () => {
           <Link isExternal href={siteConfig.links.github} aria-label="Github">
             <GithubIcon className="text-default-500" />
           </Link>
-          <ThemeSwitch />
+          {/* <ThemeSwitch /> */}
           <I18nSwitch />
         </NavbarItem>
         <NavbarItem className="hidden md:flex">
-          <Button as={Link} color="warning" href="/login" variant="flat">
-            {t('Sign In')}
-          </Button>
+          <RouterLink to={'/login'}>
+            <button className="text-white rainbow p-[3px] rounded-lg w-full max-w-[300px] font-bold h-9 text-sm">
+              <div className="bg-black hover:bg-[#1e293b] flex w-full h-full items-center justify-center  rounded-md px-4">
+                {t('Sign in')}
+              </div>
+            </button>
+          </RouterLink>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
         <Link isExternal href={siteConfig.links.github} aria-label="Github">
           <GithubIcon className="text-default-500" />
         </Link>
-        <ThemeSwitch />
+        {/* <ThemeSwitch /> */}
         <NavbarMenuToggle />
       </NavbarContent>
       <NavbarMenu>

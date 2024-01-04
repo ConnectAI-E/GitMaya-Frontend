@@ -1,9 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Home from '@/routes/home';
-import Login from '@/routes/login';
-
 import Layout from '@/layout';
-import useDarkMode from 'use-dark-mode';
+import { FallbackElement } from '@/components/fallback-element';
 
 const router = createBrowserRouter([
   {
@@ -12,25 +9,30 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />
+        lazy: async () => {
+          const Component = (await import('@/routes/home')).default;
+          return {
+            Component
+          };
+        }
       }
     ]
   },
   {
     path: '/login',
-    element: <Login />
+    lazy: async () => {
+      const Component = (await import('@/routes/login')).default;
+      return {
+        Component
+      };
+    }
   }
 ]);
 
 function App() {
-  const darkMode = useDarkMode(false);
   return (
-    <main
-      className={`${
-        darkMode.value ? 'dark' : ''
-      } text-foreground bg-background`}
-    >
-      <RouterProvider router={router} fallbackElement={<div>Loading...</div>} />
+    <main className="dark text-foreground bg-background">
+      <RouterProvider router={router} fallbackElement={<FallbackElement />} />
     </main>
   );
 }

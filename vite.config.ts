@@ -3,18 +3,18 @@ import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	plugins: [react()],
-	resolve: {
-		alias: {
-			'@': '/src',
-		},
-	},
-	server: {
-		proxy: {
-			'/api': {
-				target: '',
-				changeOrigin: true,
-			},
-		},
-	},
+  plugins: [react()],
+  resolve: {
+    alias: {
+      '@': '/src'
+    }
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://testapi.gitmaya.com',
+        changeOrigin: true
+      }
+    }
+  }
 });
