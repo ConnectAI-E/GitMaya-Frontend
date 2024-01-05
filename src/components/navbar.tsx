@@ -5,7 +5,7 @@ import {
   NavbarMenuToggle,
   NavbarBrand,
   NavbarItem,
-  NavbarMenuItem
+  NavbarMenuItem,
 } from '@nextui-org/navbar';
 import { Link } from '@nextui-org/link';
 
@@ -28,9 +28,7 @@ export const Navbar = () => {
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <Link className="flex justify-start items-center gap-1" href="/">
             <Logo />
-            <div className="text-xl font-black mx-4 text-gradient rainbow-text">
-              GitMaya
-            </div>
+            <div className="text-xl font-black mx-4 text-gradient rainbow-text">GitMaya</div>
           </Link>
         </NavbarBrand>
         <ul className="hidden lg:flex gap-4 justify-start ml-2">
@@ -39,7 +37,7 @@ export const Navbar = () => {
               <Link
                 className={clsx(
                   linkStyles({ color: 'foreground' }),
-                  'data-[active=true]:text-primary data-[active=true]:font-medium'
+                  'data-[active=true]:text-primary data-[active=true]:font-medium',
                 )}
                 color="foreground"
                 href={item.href}
@@ -50,10 +48,7 @@ export const Navbar = () => {
           ))}
         </ul>
       </NavbarContent>
-      <NavbarContent
-        className="hidden sm:flex basis-1/5 sm:basis-full"
-        justify="end"
-      >
+      <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end">
         <NavbarItem className="hidden sm:flex gap-2">
           <Link isExternal href={siteConfig.links.discord} aria-label="Discord">
             <DiscordIcon className="text-default-500" />

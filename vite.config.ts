@@ -6,15 +6,16 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@': '/src'
-    }
+      '@': '/src',
+    },
   },
   server: {
+    port: 3000,
     proxy: {
       '/api': {
         target: 'https://testapi.gitmaya.com',
-        changeOrigin: true
-      }
-    }
-  }
+        changeOrigin: true,
+      },
+    },
+  },
 });

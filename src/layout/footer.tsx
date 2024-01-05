@@ -7,7 +7,7 @@ export const Footer = () => {
   const [showCookie, setShowCookie] = useLocalStorageState(`showCookie`, {
     serializer: JSON.stringify,
     deserializer: JSON.parse,
-    defaultValue: true
+    defaultValue: true,
   });
   return (
     <footer>
@@ -19,12 +19,8 @@ export const Footer = () => {
               <Logo height={35} width={35} />
             </Link>
           </div>
-          <div className="text-xl font-black mx-4 text-gradient rainbow-text">
-            GitMaya
-          </div>
-          <div className="text-black-light text-sm">
-            © All rights reserved.
-          </div>
+          <div className="text-xl font-black mx-4 text-gradient rainbow-text">GitMaya</div>
+          <div className="text-black-light text-sm">© All rights reserved.</div>
           <div className="ml-auto flex gap-5">
             <a href="/" target="_blank" rel="noopener noreferrer">
               <svg
@@ -69,28 +65,18 @@ export const Footer = () => {
       <div
         className={clsx(
           'fixed z-40 bottom-0 w-full text-white bg-[#1e293b] h-50 ',
-          `${showCookie ? 'block' : 'hidden'}`
+          `${showCookie ? 'block' : 'hidden'}`,
         )}
       >
         <div className="max-w-6xl mx-auto px-5 py-5 sm:px-6 flex items-center">
           <div>
-            We use cookies in this website to give you the best experience on
-            our site. To find out more, read our
-            <a
-              href="/privacy"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400"
-            >
+            We use cookies in this website to give you the best experience on our site. To find out
+            more, read our
+            <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-400">
               <span> privacy policy </span>
             </a>
             and
-            <a
-              href="/terms"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400"
-            >
+            <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-blue-400">
               <span> cookies policy </span>
             </a>
           </div>

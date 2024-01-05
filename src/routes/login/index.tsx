@@ -2,18 +2,19 @@ import { GithubIcon, GitLabIcon, SlackIcon } from '@/components/icons';
 import { useEffect } from 'react';
 import { Footer } from '@/layout/footer';
 import { isEmpty } from 'lodash-es';
+import { redirect } from 'react-router-dom';
 
 const Login = () => {
   useEffect(() => {
     window.addEventListener('message', (e) => {
       if (e.data?.event === 'oauth' && !isEmpty(e.data?.data)) {
-        window.alert('Login success!');
+        redirect('/app');
       }
     });
   }, []);
 
   const handleSignInGithub = () => {
-    window.open('/api/github/oauth', '_blank');
+    window.open('/api/github/oauth', '', 'left=500,top=300,width=480,height=640');
   };
 
   return (
@@ -103,9 +104,7 @@ const Login = () => {
                     >
                       <GitLabIcon className="me-2" size={20} />
                       Sign in with GitLab
-                      <span className="text-gray-400 font-light text-xs ml-1">
-                        (SaaS)
-                      </span>
+                      <span className="text-gray-400 font-light text-xs ml-1">(SaaS)</span>
                     </button>
                   </div>
                   <div className="flex flex-col items-center">
@@ -132,10 +131,7 @@ const Login = () => {
               </div>
               <p className="text-md w-full">
                 · Not a developer? Log in with your team's Slack workspace
-                <span className="text-gray-400 font-light">
-                  (in view-only mode)
-                </span>
-                .
+                <span className="text-gray-400 font-light">(in view-only mode)</span>.
               </p>
               <button
                 type="button"
