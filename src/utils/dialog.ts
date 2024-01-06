@@ -7,20 +7,19 @@ export const useDialog = ({
   event,
   callback,
 }) => {
-  const loginDialog = useRef<Window | null>();
+  const dialog = useRef<Window | null>();
   useEffect(() => {
     window.addEventListener('message', (e) => {
-      console.log('message', e.data);
       if (e.data?.event === event && !isEmpty(e.data?.data)) {
-        console.log('message', e.data.data);
-        if (loginDialog.current) {
-          loginDialog.current.close();
+        // 立即关闭弹窗，之前后端写了一个3s延时
+        if (dialog.current) {
+          dialog.current.close();
         }
         callback && callback(e.data);
       }
     });
   }, []);
   return () => {
-    loginDialog.current = window.open(url, '', option);
+    dialog.current = window.open(url, '', option);
   };
 };
