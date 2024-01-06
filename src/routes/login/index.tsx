@@ -1,21 +1,14 @@
 import { GithubIcon, GitLabIcon, SlackIcon } from '@/components/icons';
-import { useEffect } from 'react';
 import { Footer } from '@/layout/footer';
-import { isEmpty } from 'lodash-es';
+import { useDialog } from '@/utils/dialog';
 import { redirect } from 'react-router-dom';
 
 const Login = () => {
-  useEffect(() => {
-    window.addEventListener('message', (e) => {
-      if (e.data?.event === 'oauth' && !isEmpty(e.data?.data)) {
-        redirect('/app');
-      }
-    });
-  }, []);
-
-  const handleSignInGithub = () => {
-    window.open('/api/github/oauth', '', 'left=500,top=300,width=480,height=640');
-  };
+  const handleSignInGithub = useDialog({
+    url: '/api/github/oauth',
+    event: 'oauth',
+    callback: () => redirect('/app'),
+  });
 
   return (
     <div className="flex flex-col min-h-screen bg-black-dark overflow-hidden relative isolate">
