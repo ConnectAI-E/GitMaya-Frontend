@@ -6,7 +6,7 @@ export const useDialog = ({
   option = 'left=500,top=300,width=480,height=640',
   event,
   callback,
-}) => {
+}: {url: string, option?: string, event: string, callback: (data: any) => null}) => {
   const dialog = useRef<Window | null>();
   useEffect(() => {
     window.addEventListener('message', (e) => {
