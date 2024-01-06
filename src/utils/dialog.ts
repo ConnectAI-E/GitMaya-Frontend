@@ -6,9 +6,9 @@ export const useDialog = ({
   option = 'left=500,top=300,width=480,height=640',
   event,
   callback,
-}: {url: string, option?: string, event: string, callback: (data: any) => null}) => {
+}: {url: string, option?: string, event: string, callback: (data: any) => void}) => {
   const dialog = useRef<Window | null>();
-  const eventListener = (e) => {
+  const eventListener = (e: any) => {
     if (e.data?.event === event && !isEmpty(e.data?.data)) {
       // 立即关闭弹窗，之前后端写了一个3s延时
       if (dialog.current) {
