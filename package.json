@@ -31,7 +31,7 @@
     "zustand": "^4.4.7"
   },
   "devDependencies": {
-    "@commitlint/cli": "^18.4.3",
+    "@commitlint/cli": "^18.4.4",
     "@commitlint/config-conventional": "^18.4.3",
     "@types/lodash-es": "^4.17.12",
     "@types/react": "^18.2.45",
