@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const request = axios.create({
-  withCredentials: true
+  withCredentials: true,
 });
 
 request.interceptors.response.use(
@@ -10,7 +10,7 @@ request.interceptors.response.use(
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 export default request;

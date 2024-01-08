@@ -19,8 +19,13 @@ import { I18nSwitch } from '@/components/i18n-switch';
 
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
+import { useAccountStore } from '@/stores';
+import { Avatar } from '@/components/avatar';
 
 export const Navbar = () => {
+  const account = useAccountStore.use.account();
+  console.log('Dogtiti ~ file: navbar.tsx:26 ~ Navbar ~ user:', account);
+
   const { t } = useTranslation();
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
@@ -50,23 +55,31 @@ export const Navbar = () => {
       </NavbarContent>
       <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end">
         <NavbarItem className="hidden sm:flex gap-2">
-          <Link isExternal href={siteConfig.links.discord} aria-label="Discord">
-            <DiscordIcon className="text-default-500" />
-          </Link>
           <Link isExternal href={siteConfig.links.github} aria-label="Github">
             <GithubIcon className="text-default-500" />
+          </Link>
+          <Link isExternal href={siteConfig.links.discord} aria-label="Discord">
+            <DiscordIcon className="text-default-500" />
           </Link>
           {/* <ThemeSwitch /> */}
           <I18nSwitch />
         </NavbarItem>
-        <NavbarItem className="hidden md:flex">
-          <RouterLink to={'/login'}>
-            <button className="text-white rainbow p-[3px] rounded-lg w-full max-w-[300px] font-bold h-9 text-sm">
-              <div className="bg-black hover:bg-[#1e293b] flex w-full h-full items-center justify-center  rounded-md px-4">
-                {t('Sign in')}
-              </div>
-            </button>
-          </RouterLink>
+        <NavbarItem className="hidden sm:flex">
+          {account ? (
+            <Avatar
+              name={account.user.name}
+              email={account.user.email}
+              avatarUrl={account.user.avatar}
+            />
+          ) : (
+            <RouterLink to={'/login'}>
+              <button className="text-white rainbow p-[3px] rounded-lg w-full max-w-[300px] font-bold h-9 text-sm">
+                <div className="bg-black hover:bg-[#1e293b] flex w-full h-full items-center justify-center  rounded-md px-4">
+                  {t('Sign in')}
+                </div>
+              </button>
+            </RouterLink>
+          )}
         </NavbarItem>
       </NavbarContent>
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">

@@ -1,13 +1,14 @@
 import { GithubIcon, GitLabIcon, SlackIcon } from '@/components/icons';
 import { Footer } from '@/layout/footer';
-import { useDialog } from '@/utils/dialog';
-import { redirect } from 'react-router-dom';
+import { useOauthDialog } from '@/hooks';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const handleSignInGithub = useDialog({
+  const navigate = useNavigate();
+  const handleSignInGithub = useOauthDialog({
     url: '/api/github/oauth',
     event: 'oauth',
-    callback: () => redirect('/app'),
+    callback: () => navigate('/app'),
   });
 
   return (

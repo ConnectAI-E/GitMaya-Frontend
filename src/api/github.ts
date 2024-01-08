@@ -1,11 +1,11 @@
 import request from '@/utils/request';
 import useSWR from 'swr';
 
-export const useUser = () => {
-  const { data, error, isLoading } = useSWR('/api/account', request);
+export const useAccount = () => {
+  const { data, error, isLoading } = useSWR<Github.Account>('/api/account', request);
 
   return {
-    user: data,
+    data: data?.user,
     isLoading,
     isError: error,
   };
