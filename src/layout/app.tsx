@@ -1,17 +1,24 @@
 import { Outlet } from 'react-router-dom';
 import { Navbar } from '@/components/navbar';
-import { Footer } from '@/layout/footer';
+import { ReactNode } from 'react';
 
-const App = () => {
+const AppLayout = () => {
   return (
-    <div className="relative flex flex-col h-screen">
+    <div className="relative flex flex-col h-screen ">
       <Navbar />
-      <main className="container mx-auto max-w-7xl pt-32 px-6 flex-grow">
-        <Outlet />
-      </main>
-      <Footer />
+      <Outlet />
     </div>
   );
 };
 
-export default App;
+export const Hero = ({ children }: { children?: ReactNode }) => {
+  return (
+    <div className="bg-black pb-32">
+      <header className="pt-10 pb-10">
+        <div className="max-w-7xl mx-auto">{children}</div>
+      </header>
+    </div>
+  );
+};
+
+export default AppLayout;

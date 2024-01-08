@@ -44,6 +44,15 @@ const router = createBrowserRouter([
           };
         },
       },
+      {
+        path: 'induction',
+        lazy: async () => {
+          const Component = (await import('@/routes/induction')).default;
+          return {
+            Component,
+          };
+        },
+      },
     ],
   },
 ]);

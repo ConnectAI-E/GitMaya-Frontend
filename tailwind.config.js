@@ -6,10 +6,10 @@ export default {
   content: [
     './index.html',
     './src/**/*.{js,ts,jsx,tsx}',
-    './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}'
+    './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {}
+    extend: {},
   },
   darkMode: 'class',
   plugins: [
@@ -17,21 +17,22 @@ export default {
     plugin(function ({ addUtilities }) {
       addUtilities({
         '.rainbow': {
-          backgroundImage:
-            'linear-gradient(to right, #ec4899, #ef4444, #eab308)'
+          backgroundImage: 'linear-gradient(to right, #eab308, #ef4444, #ec4899)',
         },
         '.rainbow-text': {
-          backgroundImage:
-            'linear-gradient(to right, #ec4899, #ef4444, #eab308)',
+          backgroundImage: 'linear-gradient(to right, #eab308, #ef4444, #ec4899)',
           color: 'transparent',
-          'background-clip': 'text'
+          'background-clip': 'text',
         },
         '.flex-center': {
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center'
-        }
+          justifyContent: 'center',
+        },
+        '.bg-black-light-light': {
+          'background-color': 'rgb(243,244,246)',
+        },
       });
-    })
-  ]
+    }),
+  ],
 };

@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-black-dark {
+  @apply dark text-foreground bg-background;
+}

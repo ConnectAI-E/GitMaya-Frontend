@@ -24,7 +24,6 @@ import { Avatar } from '@/components/avatar';
 
 export const Navbar = () => {
   const account = useAccountStore.use.account();
-  console.log('Dogtiti ~ file: navbar.tsx:26 ~ Navbar ~ user:', account);
 
   const { t } = useTranslation();
   return (
@@ -67,9 +66,9 @@ export const Navbar = () => {
         <NavbarItem className="hidden sm:flex">
           {account ? (
             <Avatar
-              name={account.user.name}
-              email={account.user.email}
-              avatarUrl={account.user.avatar}
+              name={account.user?.name}
+              email={account.user?.email}
+              avatarUrl={account.user?.avatar}
             />
           ) : (
             <RouterLink to={'/login'}>
@@ -97,9 +96,7 @@ export const Navbar = () => {
                 color={
                   index === 2
                     ? 'primary'
-                    : index ===
-                        // eslint-disable-next-line no-mixed-spaces-and-tabs
-                        siteConfig.navMenuItems.length - 1
+                    : index === siteConfig.navMenuItems.length - 1
                       ? 'danger'
                       : 'foreground'
                 }
