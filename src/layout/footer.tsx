@@ -3,14 +3,14 @@ import clsx from 'clsx';
 import { Logo } from '@/components/icons';
 import { Link } from 'react-router-dom';
 
-export const Footer = () => {
+export const Footer = ({ className }: { className?: string }) => {
   const [showCookie, setShowCookie] = useLocalStorageState(`showCookie`, {
     serializer: JSON.stringify,
     deserializer: JSON.parse,
     defaultValue: true,
   });
   return (
-    <footer>
+    <footer className={className}>
       <div className="static bottom-0 w-full">
         <div className="h-[1px] w-full rainbow"></div>
         <div className="flex items-center max-w-6xl mx-auto px-4 sm:px-6 my-8">

@@ -53,6 +53,15 @@ const router = createBrowserRouter([
           };
         },
       },
+      {
+        path: 'people',
+        lazy: async () => {
+          const Component = (await import('@/routes/people')).default;
+          return {
+            Component,
+          };
+        },
+      },
     ],
   },
 ]);

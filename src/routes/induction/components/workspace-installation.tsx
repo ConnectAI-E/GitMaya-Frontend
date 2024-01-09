@@ -10,7 +10,7 @@ export const WorkSpaceInstallation = () => {
   };
 
   return (
-    <main className="grow p-8 max-w-4xl">
+    <main className="max-w-4xl">
       <img src={githubEmptyState} className="h-36 sm:h-64 w-auto mx-auto" />
       <div className="grid grid-cols-3 items-center justify-center mt-8 gap-8">
         {/* <Link className="flex items-center text-center text-sm underline text-primary" to="/login">

@@ -1,20 +1,12 @@
 import { Footer } from '@/layout/footer';
 import { ContactForm, StepGuide, GithubInstallation, WorkSpaceInstallation } from './components';
 import { useState } from 'react';
+import { HeaderContent } from '@/layout/app';
 
 type StepComponentType = React.FC<{
   step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
 }>;
-
-const HeaderContent = ({ title, children }: { title: string; children: React.ReactNode }) => (
-  <header className="pt-10 pb-10">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 className="text-3xl font-bold text-white">{title}</h1>
-    </div>
-    <div>{children}</div>
-  </header>
-);
 
 const stepComponents: Record<number, StepComponentType> = {
   0: ContactForm,
@@ -72,9 +64,7 @@ const Induction = () => {
       <main className="container max-w-7xl mx-auto px-4 sm:px-6 flex-grow bg-white">
         <div className="grow flex max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <StepGuide step={step} setStep={setStep} />
-          <div className="grow p-8 max-w-3xl">
-            {<StepComponent step={step} setStep={setStep} />}
-          </div>
+          <div className="grow p-8">{<StepComponent step={step} setStep={setStep} />}</div>
         </div>
       </main>
       <Footer />
