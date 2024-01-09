@@ -69,15 +69,6 @@ export const ContactForm = ({
           />
         </div>
         <div className="max-w-lg">
-          <Checkbox className="items-start">
-            <span className="text-black">I'd like to subscribe to the monthly newsletter</span>
-            <p className="text-gray-500">
-              Subscribe to our monthly newsletter to be the first one to hear about product updates.
-              No spam, we promise.
-            </p>
-          </Checkbox>
-        </div>
-        <div>
           <Controller
             name="role"
             control={control}
@@ -89,7 +80,6 @@ export const ContactForm = ({
                 isRequired
                 label="Role"
                 placeholder="Select an role"
-                className="max-w-xs"
                 value={field.value as string}
               >
                 {Roles.map((role) => (
@@ -100,6 +90,15 @@ export const ContactForm = ({
               </Select>
             )}
           />
+        </div>
+        <div className="max-w-lg mb-2">
+          <Checkbox className="items-start">
+            <span className="text-black">I'd like to subscribe to the monthly newsletter</span>
+            <p className="text-gray-500">
+              Subscribe to our monthly newsletter to be the first one to hear about product updates.
+              No spam, we promise.
+            </p>
+          </Checkbox>
         </div>
       </form>
       <div className="max-w-lg flex">

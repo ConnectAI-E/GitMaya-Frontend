@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { createSelectors } from './helper';
-import request from '@/utils/request';
 import i18n from '@/i18n';
+import { getAccount } from '@/api';
 
 interface AccountState {
   account: Github.Account | null;
@@ -21,7 +21,7 @@ const useAccountStoreBase = create<AccountState>((set) => ({
     set({ lang });
   },
   updateAccount: async () => {
-    const { data } = await request.get<Github.Account>('/api/account');
+    const { data } = await getAccount();
     set({ account: data });
   },
 }));
