@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.bg-black-dark {
+.bg-dark {
   @apply dark text-foreground bg-background;
+}
+
+.bg-light {
+  @apply light text-foreground bg-background;
 }

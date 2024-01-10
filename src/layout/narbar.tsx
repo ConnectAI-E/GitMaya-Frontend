@@ -11,7 +11,7 @@ import { Link } from '@nextui-org/link';
 
 import { link as linkStyles } from '@nextui-org/theme';
 
-import { siteConfig } from '@/config/site';
+import { siteConfig } from '@/config';
 import clsx from 'clsx';
 import { GithubIcon, DiscordIcon, Logo } from '@/components/icons';
 // import { ThemeSwitch } from '@/components/theme-switch';

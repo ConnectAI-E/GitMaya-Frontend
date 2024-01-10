@@ -49,4 +49,45 @@ declare namespace Github {
     telephone: null | string;
     unionid: string;
   }
+
+  interface Team {
+    created: string;
+    description: string | null;
+    extra: Record<string, unknown>;
+    id: string;
+    modified: string;
+    name: string;
+    status: number;
+    user_id: string;
+  }
+
+  interface TeamMember {
+    code_user: {
+      avatar: string;
+      email: string;
+      id: string;
+      name: string;
+      user_id: string;
+    };
+    id: string;
+    im_user: { avatar: string; email: string; id: string; name: string; user_id: string };
+    status: number;
+  }
+}
+
+declare namespace Lark {
+  interface Config {
+    name: string;
+    app_id: string;
+    app_secret: string;
+    encrypt_key: string;
+    verification_token: string;
+  }
+
+  interface User {
+    label: string;
+    value: string;
+    avatar: string;
+    email?: string;
+  }
 }

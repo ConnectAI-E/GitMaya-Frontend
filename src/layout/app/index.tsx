@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { Navbar } from '@/components/navbar';
+import { Navbar } from '@/layout/app/navbar';
 
 const AppLayout = () => {
   return (
@@ -34,4 +34,5 @@ export const Hero = ({ children }: { children?: React.ReactNode }) => {
     </div>
   );
 };
+
 export default AppLayout;

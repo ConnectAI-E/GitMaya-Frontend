@@ -8,128 +8,96 @@ import {
   TableRow,
   TableCell,
   User,
-  Chip,
-  Tooltip,
-  getKeyValue,
+  Select,
+  SelectItem,
+  Spinner,
 } from '@nextui-org/react';
 import { useCallback } from 'react';
+import { getPlatformMember, getTeamMember, bindTeamMember } from '@/api';
+import useSwr from 'swr';
+import { useSearchParams } from 'react-router-dom';
+import useSWRMutation from 'swr/mutation';
 
-const statusColorMap = {
-  active: 'success',
-  paused: 'danger',
-  vacation: 'warning',
-};
 const columns = [
-  { name: 'NAME', uid: 'name' },
-  { name: 'ROLE', uid: 'role' },
-  { name: 'STATUS', uid: 'status' },
+  { name: 'GitHub handle', uid: 'github' },
+  { name: 'Lark handle', uid: 'lark' },
+  { name: 'Role', uid: 'role' },
 ];
 
-const users = [
-  {
-    id: 1,
-    name: 'Tony Reichert',
-    role: 'CEO',
-    team: 'Management',
-    status: 'active',
-    age: '29',
-    avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026024d',
-    email: 'tony.reichert@example.com',
-  },
-  {
-    id: 1,
-    name: 'Tony Reichert',
-    role: 'CEO',
-    team: 'Management',
-    status: 'active',
-    age: '29',
-    avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026024d',
-    email: 'tony.reichert@example.com',
-  },
-  {
-    id: 1,
-    name: 'Tony Reichert',
-    role: 'CEO',
-    team: 'Management',
-    status: 'active',
-    age: '29',
-    avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026024d',
-    email: 'tony.reichert@example.com',
-  },
-  {
-    id: 1,
-    name: 'Tony Reichert',
-    role: 'CEO',
-    team: 'Management',
-    status: 'active',
-    age: '29',
-    avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026024d',
-    email: 'tony.reichert@example.com',
-  },
-  {
-    id: 1,
-    name: 'Tony Reichert',
-    role: 'CEO',
-    team: 'Management',
-    status: 'active',
-    age: '29',
-    avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026024d',
-    email: 'tony.reichert@example.com',
-  },
-  {
-    id: 1,
-    name: 'Tony Reichert',
-    role: 'CEO',
-    team: 'Management',
-    status: 'active',
-    age: '29',
-    avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026024d',
-    email: 'tony.reichert@example.com',
-  },
-  {
-    id: 1,
-    name: 'Tony Reichert',
-    role: 'CEO',
-    team: 'Management',
-    status: 'active',
-    age: '29',
-    avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026024d',
-    email: 'tony.reichert@example.com',
-  },
-];
 const People = () => {
-  const renderCell = useCallback((user, columnKey) => {
-    const cellValue = user[columnKey];
+  const [searchParams] = useSearchParams();
+  const team_id = searchParams.get('team_id') as string;
 
-    switch (columnKey) {
-      case 'name':
-        return (
-          <User
-            avatarProps={{ radius: 'lg', src: user.avatar }}
-            description={user.email}
-            name={cellValue}
-          >
-            {user.email}
-          </User>
-        );
-      case 'role':
-        return (
-          <div className="flex flex-col">
-            <p className="text-bold text-sm capitalize">{cellValue}</p>
-            <p className="text-bold text-sm capitalize text-default-400">{user.team}</p>
-          </div>
-        );
-      case 'status':
-        return (
-          <Chip className="capitalize" color={statusColorMap[user.status]} size="sm" variant="flat">
-            {cellValue}
-          </Chip>
-        );
+  const { trigger } = useSWRMutation(
+    `api/team/${team_id}/member`,
+    (
+      _url,
+      {
+        arg,
+      }: {
+        arg: {
+          code_user_id: string;
+          im_user_id: string;
+        };
+      },
+    ) => bindTeamMember(team_id, arg),
+  );
 
-      default:
-        return cellValue;
-    }
-  }, []);
+  const { data, mutate } = useSwr(team_id ? `/api/team/${team_id}/member` : null, () =>
+    getTeamMember(team_id),
+  );
+
+  const { data: larkUserData, isLoading } = useSwr(
+    team_id ? `/api/team/${team_id}/lark/user` : null,
+    () => getPlatformMember<Lark.User[]>(team_id, 'lark'),
+  );
+
+  const teamMember = data?.data || [];
+
+  const larkUsers = larkUserData?.data;
+
+  const bindMember = async (e: React.ChangeEvent<HTMLSelectElement>, user: Github.TeamMember) => {
+    const { value } = e.target;
+    await trigger({
+      code_user_id: user.code_user.id,
+      im_user_id: value,
+    });
+    mutate();
+  };
+
+  const renderCell = useCallback(
+    (user: Github.TeamMember, columnKey: string) => {
+      switch (columnKey) {
+        case 'github':
+          return (
+            <User
+              name={user.code_user.name}
+              avatarProps={{ radius: 'lg', src: user.code_user.avatar }}
+              description={user.code_user.email}
+            >
+              {user.code_user.email}
+            </User>
+          );
+        case 'lark':
+          return (
+            <Select
+              label="Select a user"
+              className="max-w-xs"
+              size="sm"
+              onChange={(e) => bindMember(e, user)}
+              items={larkUsers}
+              defaultSelectedKeys={[user.im_user?.id]}
+            >
+              {(user) => <SelectItem key={user.value}>{user.label}</SelectItem>}
+            </Select>
+          );
+
+        default:
+          return null;
+      }
+    },
+    [larkUsers],
+  );
 
   return (
     <div className="flex-grow flex flex-col">
@@ -158,23 +126,30 @@ const People = () => {
             </div>
           </div>
         </Hero>
-        <main className="light container -mt-32 max-w-7xl mx-auto flex-grow">
-          <Table aria-label="Example table with custom cells">
-            <TableHeader columns={columns}>
-              {(column) => (
-                <TableColumn key={column.uid} align={column.uid === 'actions' ? 'center' : 'start'}>
-                  {column.name}
-                </TableColumn>
-              )}
-            </TableHeader>
-            <TableBody items={users}>
-              {(item) => (
-                <TableRow key={item.id}>
-                  {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
+        <main className="bg-light container -mt-32 max-w-7xl mx-auto flex-grow relative">
+          {isLoading ? (
+            <Spinner label="Loading..." color="warning" className="absolute inset-0" />
+          ) : (
+            <Table aria-label="Example table with custom cells text-black">
+              <TableHeader columns={columns}>
+                {(column) => (
+                  <TableColumn
+                    key={column.uid}
+                    align={column.uid === 'actions' ? 'center' : 'start'}
+                  >
+                    {column.name}
+                  </TableColumn>
+                )}
+              </TableHeader>
+              <TableBody items={teamMember}>
+                {(item) => (
+                  <TableRow key={item.id}>
+                    {(columnKey) => <TableCell>{renderCell(item, columnKey as string)}</TableCell>}
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          )}
         </main>
       </div>
       <Footer />

@@ -13,6 +13,9 @@ import clsx from 'clsx';
 import { StepIcon } from './step-guide';
 import { LarkIcon } from '@/components/icons';
 import { useForm, Controller } from 'react-hook-form';
+import useSWRMutation from 'swr/mutation';
+import { installApp } from '@/api';
+import { useSearchParams } from 'react-router-dom';
 
 export interface LarkInstallationRef {
   isOpen: boolean;
@@ -20,100 +23,16 @@ export interface LarkInstallationRef {
   onClose: () => void;
 }
 
-const StepOne = () => {
-  return (
-    <div>
-      <h1 className="text-lg font-bold mb-4">创建机器人</h1>
-      <div className="flex flex-col gap-4">
-        <Button className="p-4 text-left rainbow text-white connectai-auto-deploy-lark">
-          一键重新部署至（Connect-AI）
-        </Button>
-        <Button className="p-4 text-left">自行前往开发者平台，创建应用</Button>
-      </div>
-    </div>
-  );
-};
+export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) => {
+  const [searchParams] = useSearchParams();
 
-const StepTwo = () => {
-  const { control, handleSubmit } = useForm({
-    defaultValues: {
-      name: '',
-      app_id: '',
-      app_secret: '',
-      encrypt_key: '',
-      verification_token: '',
-    },
-  });
-  return (
-    <form className="flex flex-col gap-4">
-      <div className="flex items-center gap-6 max-w-lg">
-        <Controller
-          name="name"
-          control={control}
-          rules={{ required: true }}
-          render={({ field }) => (
-            <Input isRequired label="NAME" placeholder="Enter your robot name " {...field} />
-          )}
-        />
-        <Controller
-          name="app_id"
-          control={control}
-          rules={{ required: true }}
-          render={({ field }) => (
-            <Input isRequired label="APP_ID" placeholder="Enter your app id " {...field} />
-          )}
-        />
-      </div>
-      <div className="flex items-center gap-6 max-w-lg">
-        <Controller
-          name="app_secret"
-          control={control}
-          rules={{ required: true }}
-          render={({ field }) => (
-            <Input isRequired label="APP_SECRET" placeholder="Enter your app secret " {...field} />
-          )}
-        />
-        <Controller
-          name="encrypt_key"
-          control={control}
-          rules={{ required: true }}
-          render={({ field }) => (
-            <Input
-              isRequired
-              label="ENCRYPT_KEY"
-              placeholder="Enter your encrypt key "
-              {...field}
-            />
-          )}
-        />
-      </div>
-      <div className="flex items-center gap-6 max-w-lg">
-        <Controller
-          name="verification_token"
-          control={control}
-          rules={{ required: true }}
-          render={({ field }) => (
-            <Input
-              isRequired
-              label="VERIFICATION_TOKEN"
-              placeholder="Enter your verification token "
-              {...field}
-            />
-          )}
-        />
-      </div>
-    </form>
-  );
-};
-
-const stepComponents: Record<number, React.FC> = {
-  0: StepOne,
-  1: StepTwo,
-};
-
-export const LarkInstallation = forwardRef<LarkInstallationRef>((props, ref) => {
+  const team_id = searchParams.get('team_id') as string;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [step, setStep] = useState(0);
+  const { trigger, isMutating } = useSWRMutation(
+    `/api/team/${team_id}/lark/app`,
+    (_url, { arg }: { arg: Lark.Config }) => installApp(team_id, 'lark', arg),
+  );
   const steps = [
     {
       title: '创建机器人',
@@ -125,6 +44,121 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((props, ref) => 
       title: '获取回调地址',
     },
   ];
+
+  const { control, handleSubmit } = useForm({
+    defaultValues: {
+      name: '',
+      app_id: '',
+      app_secret: '',
+      encrypt_key: '',
+      verification_token: '',
+    },
+  });
+
+  const StepOne = () => {
+    const [action, setAction] = useState('auto');
+
+    return (
+      <div>
+        <h1 className="text-lg font-bold mb-4">创建机器人</h1>
+        <div className="flex flex-col gap-4">
+          <Button
+            className={clsx('p-4 text-left connectai-auto-deploy-lark', {
+              'rainbow text-white': action === 'auto',
+            })}
+            onClick={() => setAction('auto')}
+          >
+            一键重新部署至（Connect-AI）
+          </Button>
+          <Button
+            className={clsx('p-4 text-left', {
+              'rainbow text-white': action === 'manual',
+            })}
+            onClick={() => setAction('manual')}
+          >
+            自行前往开发者平台，创建应用
+          </Button>
+        </div>
+      </div>
+    );
+  };
+
+  const StepTwo = () => {
+    return (
+      <form className="flex flex-col gap-4">
+        <div className="flex items-center gap-6 max-w-lg">
+          <Controller
+            name="name"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <Input isRequired label="NAME" placeholder="Enter your robot name " {...field} />
+            )}
+          />
+          <Controller
+            name="app_id"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <Input isRequired label="APP_ID" placeholder="Enter your app id " {...field} />
+            )}
+          />
+        </div>
+        <div className="flex items-center gap-6 max-w-lg">
+          <Controller
+            name="app_secret"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <Input
+                isRequired
+                label="APP_SECRET"
+                placeholder="Enter your app secret "
+                {...field}
+              />
+            )}
+          />
+          <Controller
+            name="encrypt_key"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <Input
+                isRequired
+                label="ENCRYPT_KEY"
+                placeholder="Enter your encrypt key "
+                {...field}
+              />
+            )}
+          />
+        </div>
+        <div className="flex items-center gap-6 max-w-lg">
+          <Controller
+            name="verification_token"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <Input
+                isRequired
+                label="VERIFICATION_TOKEN"
+                placeholder="Enter your verification token "
+                {...field}
+              />
+            )}
+          />
+        </div>
+      </form>
+    );
+  };
+
+  const save = (data: Lark.Config) => {
+    trigger(data);
+  };
+
+  const stepComponents: Record<number, React.FC> = {
+    0: StepOne,
+    1: StepTwo,
+  };
 
   const StepComponent = stepComponents[step];
 
@@ -180,18 +214,34 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((props, ref) => 
               <Button color="danger" variant="light" onPress={onClose}>
                 取消
               </Button>
-              {step > 0 && (
-                <Button variant="light" onPress={() => setStep((step) => step - 1)}>
-                  上一步
-                </Button>
-              )}
-              {step < 2 && (
+
+              {step === 0 && (
                 <Button
                   color="primary"
                   onPress={() => setStep((step) => step + 1)}
                   className="rainbow"
                 >
                   下一步
+                </Button>
+              )}
+              {step === 1 && (
+                <>
+                  <Button variant="light" onPress={() => setStep((step) => step - 1)}>
+                    上一步
+                  </Button>
+                  <Button
+                    disabled={isMutating}
+                    color="primary"
+                    className="rainbow"
+                    onClick={handleSubmit(save)}
+                  >
+                    保存
+                  </Button>
+                </>
+              )}
+              {step === 2 && (
+                <Button variant="light" onPress={() => setStep((step) => step - 1)}>
+                  上一步
                 </Button>
               )}
             </ModalFooter>

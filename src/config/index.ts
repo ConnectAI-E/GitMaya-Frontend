@@ -61,9 +61,9 @@ export const siteConfig = {
   ],
   links: {
     github: 'https://github.com/ConnectAI-E/GitMaya-Frontend',
-    twitter: 'https://twitter.com/getnextui',
-    docs: 'https://nextui.org',
-    discord: 'https://discord.gg/9b6yyZKmH4',
-    sponsor: 'https://patreon.com/jrgarciadev',
+    twitter: 'https://github.com/ConnectAI-E/GitMaya-Frontend',
+    docs: 'https://github.com/ConnectAI-E/GitMaya-Frontend',
+    discord: 'https://github.com/ConnectAI-E/GitMaya-Frontend',
+    sponsor: 'https://github.com/ConnectAI-E/GitMaya-Frontend',
   },
 };

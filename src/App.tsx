@@ -10,7 +10,7 @@ function App() {
     getAccount();
   }, [getAccount]);
   return (
-    <main className="bg-black-dark">
+    <main className="bg-dark">
       <RouterProvider router={router} fallbackElement={<FallbackElement />} />
     </main>
   );
