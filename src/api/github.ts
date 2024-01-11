@@ -22,3 +22,5 @@ export const getPlatformMember = <T>(team_id: string, platform: string) =>
 
 export const installApp = (team_id: string, platform: string, data: unknown) =>
   request.post(`/api/team/${team_id}/${platform}/app`, data);
+
+export const switchTeam = (data: { current_team: string }) => request.post('/api/account', data);

@@ -16,7 +16,7 @@ import { GithubIcon, DiscordIcon, Logo } from '@/components/icons';
 import { I18nSwitch } from '@/components/i18n-switch';
 
 import { useTranslation } from 'react-i18next';
-import { Link as RouterLink, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useAccountStore } from '@/stores';
 import { Avatar } from '@/components/avatar';
 
@@ -24,25 +24,37 @@ import { appSiteConfig } from '@/config/app';
 
 import useSwr from 'swr';
 
-import { getTeams } from '@/api';
+import { getTeams, switchTeam } from '@/api';
 
 import { Select, SelectItem, Link } from '@nextui-org/react';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
+import useSWRMutation from 'swr/mutation';
 
 export const Navbar = () => {
   const navigate = useNavigate();
   const account = useAccountStore.use.account();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const team_id = searchParams.get('team_id') || account?.current_team;
+  const updateAccount = useAccountStore.use.updateAccount();
+
+  const team_id = account?.current_team as string;
+
+  const { trigger } = useSWRMutation(
+    `api/account`,
+    (
+      _url,
+      {
+        arg,
+      }: {
+        arg: {
+          current_team: string;
+        };
+      },
+    ) => switchTeam(arg),
+  );
+
   const { data } = useSwr('/api/team', getTeams);
   // const { data: teamInfo } = useSwr(team_id ? `/api/team/${team_id}` : null, () =>
   //   getTeamInfo(team_id),
   // );
-
-  useEffect(() => {
-    if (!team_id) return;
-    setSearchParams({ team_id: team_id as string });
-  }, [team_id]);
 
   const teams =
     useMemo(
@@ -61,15 +73,15 @@ export const Navbar = () => {
 
   const { t } = useTranslation();
 
-  const selectTeam = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const selectTeam = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const team_id = e.target.value;
     if (team_id === 'create') {
       navigate('/app/induction');
     } else {
-      navigate({
-        pathname: '/app/people',
-        search: `?team_id=${team_id}`,
+      await trigger({
+        current_team: team_id,
       });
+      updateAccount();
     }
   };
 

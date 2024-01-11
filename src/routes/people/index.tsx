@@ -15,18 +15,26 @@ import {
 import { useCallback } from 'react';
 import { getPlatformMember, getTeamMember, bindTeamMember } from '@/api';
 import useSwr from 'swr';
-import { useSearchParams } from 'react-router-dom';
 import useSWRMutation from 'swr/mutation';
+import { useAccountStore } from '@/stores';
+import { RefreshIcon } from '@/components/icons';
 
 const columns = [
-  { name: 'GitHub handle', uid: 'github' },
-  { name: 'Lark handle', uid: 'lark' },
+  {
+    name: 'GitHub handle',
+    uid: 'github',
+  },
+  {
+    name: 'Lark handle',
+    uid: 'lark',
+  },
   { name: 'Role', uid: 'role' },
 ];
 
 const People = () => {
-  const [searchParams] = useSearchParams();
-  const team_id = searchParams.get('team_id') as string;
+  const account = useAccountStore.use.account();
+
+  const team_id = account?.current_team as string;
 
   const { trigger } = useSWRMutation(
     `api/team/${team_id}/member`,
@@ -47,9 +55,12 @@ const People = () => {
     getTeamMember(team_id),
   );
 
-  const { data: larkUserData, isLoading } = useSwr(
-    team_id ? `/api/team/${team_id}/lark/user` : null,
-    () => getPlatformMember<Lark.User[]>(team_id, 'lark'),
+  const {
+    data: larkUserData,
+    isLoading,
+    mutate: mutateLark,
+  } = useSwr(team_id ? `/api/team/${team_id}/lark/user` : null, () =>
+    getPlatformMember<Lark.User[]>(team_id, 'lark'),
   );
 
   const teamMember = data?.data || [];
@@ -58,11 +69,15 @@ const People = () => {
 
   const bindMember = async (e: React.ChangeEvent<HTMLSelectElement>, user: Github.TeamMember) => {
     const { value } = e.target;
-    await trigger({
-      code_user_id: user.code_user.id,
-      im_user_id: value,
-    });
-    mutate();
+    try {
+      await trigger({
+        code_user_id: user.code_user.id,
+        im_user_id: value,
+      });
+      mutate();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const renderCell = useCallback(
@@ -87,6 +102,8 @@ const People = () => {
               onChange={(e) => bindMember(e, user)}
               items={larkUsers}
               defaultSelectedKeys={[user.im_user?.id]}
+              value={user.im_user?.id}
+              disallowEmptySelection
             >
               {(user) => <SelectItem key={user.value}>{user.label}</SelectItem>}
             </Select>
@@ -98,6 +115,11 @@ const People = () => {
     },
     [larkUsers],
   );
+
+  const refreshUser = async () => {
+    mutate();
+    mutateLark();
+  };
 
   return (
     <div className="flex-grow flex flex-col">
@@ -130,16 +152,20 @@ const People = () => {
           {isLoading ? (
             <Spinner label="Loading..." color="warning" className="absolute inset-0" />
           ) : (
-            <Table aria-label="Example table with custom cells text-black">
+            <Table>
               <TableHeader columns={columns}>
-                {(column) => (
-                  <TableColumn
-                    key={column.uid}
-                    align={column.uid === 'actions' ? 'center' : 'start'}
-                  >
-                    {column.name}
-                  </TableColumn>
-                )}
+                {(column) => {
+                  return (
+                    <TableColumn key={column.uid} align="start">
+                      <div className="flex items-center gap-2">
+                        {column.name}
+                        {column.uid !== 'role' && (
+                          <RefreshIcon size={18} className="cursor-pointer" onClick={refreshUser} />
+                        )}
+                      </div>
+                    </TableColumn>
+                  );
+                }}
               </TableHeader>
               <TableBody items={teamMember}>
                 {(item) => (
