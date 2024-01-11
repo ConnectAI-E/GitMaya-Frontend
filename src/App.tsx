@@ -3,7 +3,7 @@ import { FallbackElement } from '@/components/fallback-element';
 import router from '@/routes';
 import { useAccountStore } from '@/stores';
 import { useEffect } from 'react';
-
+import { Toaster } from 'sonner';
 function App() {
   const getAccount = useAccountStore.use.updateAccount();
   useEffect(() => {
@@ -11,6 +11,7 @@ function App() {
   }, [getAccount]);
   return (
     <main className="bg-dark">
+      <Toaster position="top-right" richColors />
       <RouterProvider router={router} fallbackElement={<FallbackElement />} />
     </main>
   );

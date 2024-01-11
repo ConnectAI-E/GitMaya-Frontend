@@ -1,5 +1,5 @@
-import githubEmptyState from '@/assets/github-empty-state.png';
-import { LarkIcon, SlackIcon, DiscordIcon } from '@/components/icons';
+// import githubEmptyState from '@/assets/github-empty-state.png';
+import { LarkWhiteIcon } from '@/components/icons';
 import { LarkInstallation, type LarkInstallationRef } from './lark-installation';
 import { useRef } from 'react';
 export const WorkSpaceInstallation = () => {
@@ -11,8 +11,8 @@ export const WorkSpaceInstallation = () => {
 
   return (
     <main className="max-w-4xl">
-      <img src={githubEmptyState} className="h-36 sm:h-64 w-auto mx-auto" />
-      <div className="grid grid-cols-3 items-center justify-center mt-8 gap-8">
+      {/* <img src={githubEmptyState} className="h-36 sm:h-64 w-auto mx-auto" /> */}
+      <div className="grid grid-cols-1 items-center justify-center mt-8 gap-8">
         {/* <Link className="flex items-center text-center text-sm underline text-primary" to="/login">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +29,7 @@ export const WorkSpaceInstallation = () => {
           </svg>
           Using GitLab ?
         </Link> */}
-        <div className="items-center">
+        <div className="text-center">
           <div className="inline-block justify-center w-full max-w-[300px]">
             <div className="relative group">
               <button
@@ -37,14 +37,14 @@ export const WorkSpaceInstallation = () => {
                 className="transition duration-500 relative leading-none flex items-center justify-center text-white font-medium rounded-md py-2.5 text-center px-4 w-full max-w-[300px] rainbow  h-14 text-base"
               >
                 <div className="flex gap-2 md:gap-4 margin-auto">
-                  <LarkIcon size={30} />
+                  <LarkWhiteIcon size={30} />
                   <span className="m-auto">Add to Lark</span>
                 </div>
               </button>
             </div>
           </div>
         </div>
-        <div className="items-center">
+        {/* <div className="items-center">
           <div className="inline-block justify-center w-full max-w-[300px]">
             <div className="relative group">
               <button className="transition duration-500 relative leading-none flex items-center justify-center text-white font-medium rounded-md py-2.5 text-center px-4 w-full max-w-[300px]  h-14 text-base bg-gray-500 cursor-not-allowed">
@@ -67,7 +67,7 @@ export const WorkSpaceInstallation = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
       <LarkInstallation ref={larkInstallationRef} />
     </main>

@@ -4,7 +4,8 @@ export const getAccount = () => request.get<Github.Account>('/api/account');
 
 export const getTeams = () => request.get<Github.Team[]>('/api/team/');
 
-export const getTeamInfo = (team_id: string) => request.get<Github.Team[]>(`/api/team/${team_id}`);
+export const getTeamInfo = (team_id: string) =>
+  request.get<Github.TeamInfo>(`/api/team/${team_id}`);
 
 export const getTeamMember = (team_id: string) =>
   request.get<Github.TeamMember[]>(`/api/team/${team_id}/member`);

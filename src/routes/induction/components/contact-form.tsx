@@ -1,10 +1,11 @@
 import { Input, Checkbox, Select, SelectItem } from '@nextui-org/react';
+import { useAccountStore } from '@/stores';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 interface IFormInput {
-  firstName: string;
-  lastName: string;
-  email: string;
-  role: keyof typeof Roles;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  role?: keyof typeof Roles;
 }
 
 export const ContactForm = ({
@@ -13,11 +14,13 @@ export const ContactForm = ({
   step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
 }) => {
+  const account = useAccountStore.use.account();
+
   const { control, handleSubmit } = useForm({
     defaultValues: {
-      firstName: '',
+      firstName: account?.user.name,
       lastName: '',
-      email: '',
+      email: account?.user.email,
       role: 'Developer' as keyof typeof Roles,
     },
   });

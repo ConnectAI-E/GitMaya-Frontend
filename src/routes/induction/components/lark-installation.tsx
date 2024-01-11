@@ -14,9 +14,12 @@ import { StepIcon } from './step-guide';
 import { LarkIcon } from '@/components/icons';
 import { useForm, Controller } from 'react-hook-form';
 import useSWRMutation from 'swr/mutation';
-import { installApp } from '@/api';
-import { useSearchParams } from 'react-router-dom';
-
+import { installApp, getTeamInfo } from '@/api';
+import { useAccountStore } from '@/stores';
+import useSwr from 'swr';
+import { CopyIcon } from '@/components/icons';
+import { toast } from 'sonner';
+import { useNavigate } from 'react-router-dom';
 export interface LarkInstallationRef {
   isOpen: boolean;
   onOpen: () => void;
@@ -24,15 +27,22 @@ export interface LarkInstallationRef {
 }
 
 export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) => {
-  const [searchParams] = useSearchParams();
+  const account = useAccountStore.use.account();
+  const team_id = account?.current_team as string;
+  const navigate = useNavigate();
 
-  const team_id = searchParams.get('team_id') as string;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [step, setStep] = useState(0);
   const { trigger, isMutating } = useSWRMutation(
     `/api/team/${team_id}/lark/app`,
     (_url, { arg }: { arg: Lark.Config }) => installApp(team_id, 'lark', arg),
   );
+  const { data: teamInfoData } = useSwr(team_id ? `/api/team/${team_id}` : null, () =>
+    getTeamInfo(team_id),
+  );
+
+  const teamInfo = teamInfoData?.data;
+
   const steps = [
     {
       title: '创建机器人',
@@ -151,13 +161,36 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
     );
   };
 
-  const save = (data: Lark.Config) => {
-    trigger(data);
+  const StepThird = () => {
+    const callbackUrl = `${location.origin}/api/feishu/hook/${teamInfo?.im_application.app_id}`;
+
+    const copyCallbackUrl = () => {
+      navigator.clipboard.writeText(callbackUrl);
+      toast.success('Copied !');
+    };
+    return (
+      <div className="flex items-center gap-6 max-w-lg">
+        <Input
+          isRequired
+          label="CALLBACK_URL"
+          disabled
+          value={callbackUrl}
+          endContent={<CopyIcon className="cursor-pointer" onClick={copyCallbackUrl} />}
+        />
+      </div>
+    );
+  };
+
+  const save = async (data: Lark.Config) => {
+    await trigger(data);
+    toast.success('Saved !');
+    nextStep();
   };
 
   const stepComponents: Record<number, React.FC> = {
     0: StepOne,
     1: StepTwo,
+    2: StepThird,
   };
 
   const StepComponent = stepComponents[step];
@@ -167,6 +200,19 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
     onOpen,
     onClose,
   }));
+
+  const nextStep = () => {
+    setStep((step) => step + 1);
+  };
+
+  const prevStep = () => {
+    setStep((step) => step - 1);
+  };
+
+  const finishSetting = () => {
+    onClose();
+    navigate('/app/people');
+  };
 
   return (
     <Modal size={'4xl'} isOpen={isOpen} onClose={onClose}>
@@ -216,17 +262,13 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
               </Button>
 
               {step === 0 && (
-                <Button
-                  color="primary"
-                  onPress={() => setStep((step) => step + 1)}
-                  className="rainbow"
-                >
+                <Button color="primary" onPress={nextStep} className="rainbow">
                   下一步
                 </Button>
               )}
               {step === 1 && (
                 <>
-                  <Button variant="light" onPress={() => setStep((step) => step - 1)}>
+                  <Button variant="light" onPress={prevStep}>
                     上一步
                   </Button>
                   <Button
@@ -237,12 +279,25 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
                   >
                     保存
                   </Button>
+                  {
+                    // TODO: remove this
+                  }
+                  {import.meta.env.DEV && (
+                    <Button color="primary" onPress={nextStep} className="rainbow">
+                      下一步
+                    </Button>
+                  )}
                 </>
               )}
               {step === 2 && (
-                <Button variant="light" onPress={() => setStep((step) => step - 1)}>
-                  上一步
-                </Button>
+                <>
+                  <Button variant="light" onPress={prevStep}>
+                    上一步
+                  </Button>
+                  <Button color="primary" className="rainbow" onPress={finishSetting}>
+                    完成配置
+                  </Button>
+                </>
               )}
             </ModalFooter>
           </>

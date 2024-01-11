@@ -71,16 +71,16 @@ export const StepGuide = ({
     },
     {
       title: 'Add your code repository',
-      description: 'Pullpo connects to GitHub or GitLab.',
+      description: 'Pullpo connects to GitHub.',
     },
     {
-      title: 'Add your Slack workspace',
+      title: 'Add your Lark workspace',
       description: 'Enable developer feedback and PR - Channels.',
     },
   ];
 
   return (
-    <nav aria-label="Progress" className="w-max m-10 self-top">
+    <nav aria-label="install-step" className="w-max m-10 self-top">
       <ol role="list" className="overflow-hidden">
         {steps.map((stepProps, index) => (
           <li key={index} className="pb-10 relative">
@@ -94,7 +94,16 @@ export const StepGuide = ({
               ></div>
             )}
             <div className={clsx('group relative flex items-start')}>
-              <StepIcon index={index} step={step} onClick={() => setStep(index)} />
+              <StepIcon
+                index={index}
+                step={step}
+                onClick={() => {
+                  // TODO: remove this
+                  if (import.meta.env.DEV) {
+                    setStep(index);
+                  }
+                }}
+              />
               <span className="ml-4 flex min-w-0 flex-col">
                 <span
                   className={clsx('text-sm font-medium', {

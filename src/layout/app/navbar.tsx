@@ -52,9 +52,6 @@ export const Navbar = () => {
   );
 
   const { data } = useSwr('/api/team', getTeams);
-  // const { data: teamInfo } = useSwr(team_id ? `/api/team/${team_id}` : null, () =>
-  //   getTeamInfo(team_id),
-  // );
 
   const teams =
     useMemo(
@@ -78,6 +75,7 @@ export const Navbar = () => {
     if (team_id === 'create') {
       navigate('/app/induction');
     } else {
+      navigate('/app/people');
       await trigger({
         current_team: team_id,
       });
@@ -118,8 +116,9 @@ export const Navbar = () => {
             className="max-w-xs min-w-48"
             size="sm"
             onChange={selectTeam}
-            selectedKeys={[team_id || 'create']}
+            defaultSelectedKeys={[team_id || 'create']}
             items={teams}
+            disallowEmptySelection
           >
             {(team) => (
               <SelectItem key={team.value} value={team.value}>

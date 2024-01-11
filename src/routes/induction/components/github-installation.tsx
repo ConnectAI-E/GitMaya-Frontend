@@ -1,5 +1,5 @@
-import githubEmptyState from '@/assets/github-empty-state.png';
-import { Link } from 'react-router-dom';
+// import githubEmptyState from '@/assets/github-empty-state.png';
+// import { Link } from 'react-router-dom';
 import { GithubIcon } from '@/components/icons';
 import { useOauthDialog } from '@/hooks';
 
@@ -11,14 +11,14 @@ export const GithubInstallation = ({
 }) => {
   const handleSignInGithub = useOauthDialog({
     url: '/api/github/install',
-    event: 'install',
+    event: 'installation',
     callback: () => setStep((step) => step + 1),
   });
   return (
     <main className="max-w-4xl">
-      <img src={githubEmptyState} className="h-36 sm:h-64 w-auto mx-auto" />
-      <div className="grid grid-cols-3 items-center justify-center mt-8">
-        <Link className="flex items-center text-center text-sm underline text-primary" to="/login">
+      {/* <img src={githubEmptyState} className="h-36 sm:h-64 w-auto mx-auto" /> */}
+      <div className="grid grid-cols-1 items-center justify-center mt-8">
+        {/* <Link className="flex items-center text-center text-sm underline text-primary" to="/login">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
@@ -33,8 +33,8 @@ export const GithubInstallation = ({
             ></path>
           </svg>
           Using GitLab ?
-        </Link>
-        <div onClick={handleSignInGithub} className="items-center">
+        </Link> */}
+        <div onClick={handleSignInGithub} className="text-center">
           <div>
             <div className="inline-block justify-center w-full max-w-[300px]">
               <div className="relative group">

@@ -102,7 +102,6 @@ const People = () => {
               onChange={(e) => bindMember(e, user)}
               items={larkUsers}
               defaultSelectedKeys={[user.im_user?.id]}
-              value={user.im_user?.id}
               disallowEmptySelection
             >
               {(user) => <SelectItem key={user.value}>{user.label}</SelectItem>}

@@ -73,6 +73,35 @@ declare namespace Github {
     im_user: { avatar: string; email: string; id: string; name: string; user_id: string };
     status: number;
   }
+
+  interface TeamInfo {
+    code_application: CodeApplication;
+    im_application: ImApplication;
+    team: Team;
+  }
+
+  interface CodeApplication {
+    created: string;
+    extra: Record<string, unknown>;
+    id: string;
+    installation_id: string;
+    modified: string;
+    platform: string;
+    status: number;
+    team_id: string;
+  }
+
+  interface ImApplication {
+    app_id: string;
+    app_secret: string;
+    created: string;
+    extra: Record<string, unknown>;
+    id: string;
+    modified: string;
+    platform: string;
+    status: number;
+    team_id: string;
+  }
 }
 
 declare namespace Lark {

@@ -1,4 +1,4 @@
-import { GithubIcon, GitLabIcon, SlackIcon } from '@/components/icons';
+import { GithubIcon } from '@/components/icons';
 import { Footer } from '@/layout/footer';
 import { useOauthDialog } from '@/hooks';
 import { useNavigate } from 'react-router-dom';
@@ -76,12 +76,12 @@ const Login = () => {
                 <span>, let's get started!</span>
               </h1>
               <div className="flex flex-col text-left w-full gap-y-6 items-center mt-6">
-                <p className="text-black-light-light text-md w-full">
+                <p className="text-black-light-light text-md w-full text-center">
                   · Sign in with your team's repository
                   <span className="text-gray-400 font-light">(preferred)</span>.
                 </p>
-                <div className="flex flex-col lg:flex-row w-full gap-4 align-top content-end">
-                  <div className="flex flex-col items-center">
+                <div className="flex flex-col lg:flex-row w-full gap-4 align-top content-end justify-center">
+                  <div className="flex flex-col items-center ">
                     <button
                       onClick={handleSignInGithub}
                       type="button"
@@ -91,7 +91,7 @@ const Login = () => {
                       Sign in with Github
                     </button>
                   </div>
-                  <div className="flex flex-col items-center">
+                  {/* <div className="flex flex-col items-center">
                     <button
                       type="button"
                       className="text-black bg-white font-bold rounded-lg text-base px-5 py-2.5 text-center inline-flex items-center dark:hover:bg-white/90 me-2 mb-2 w-64 justify-center"
@@ -120,10 +120,10 @@ const Login = () => {
                         />
                       </span>
                     </p>
-                  </div>
+                  </div> */}
                 </div>
               </div>
-              <p className="text-md w-full">
+              {/* <p className="text-md w-full">
                 · Not a developer? Log in with your team's Slack workspace
                 <span className="text-gray-400 font-light">(in view-only mode)</span>.
               </p>
@@ -133,7 +133,7 @@ const Login = () => {
               >
                 <SlackIcon className="me-2" size={20} />
                 Sign in with Slack
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
