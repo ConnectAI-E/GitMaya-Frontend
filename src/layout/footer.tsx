@@ -12,14 +12,14 @@ export const Footer = ({ className }: { className?: string }) => {
   return (
     <footer className={className}>
       <div className="static bottom-0 w-full">
-        <div className="h-[1px] w-full rainbow"></div>
+        <div className="h-[1px] w-full bg-maya"></div>
         <div className="flex items-center max-w-6xl mx-auto px-4 sm:px-6 my-8">
           <div className="flex items-center">
             <Link to="/">
               <Logo height={35} width={35} />
             </Link>
           </div>
-          <div className="text-xl font-black mx-4 text-gradient rainbow-text">GitMaya</div>
+          <div className="text-xl font-black mx-4 text-gradient text-maya">GitMaya</div>
           <div className="text-black-light text-sm">© All rights reserved.</div>
           <div className="ml-auto flex gap-5">
             <a href="/" target="_blank" rel="noopener noreferrer">
@@ -83,7 +83,7 @@ export const Footer = ({ className }: { className?: string }) => {
           <div className="ml-3">
             <button
               onClick={() => setShowCookie(false)}
-              className="text-white rainbow p-[3px] rounded-lg w-full max-w-[300px] font-bold h-9 text-sm"
+              className="text-white bg-maya p-[3px] rounded-lg w-full max-w-[300px] font-bold h-9 text-sm"
             >
               <div className="bg-black hover:bg-[#1e293b] flex w-full h-full items-center justify-center  rounded-md px-4">
                 <div>Okay</div>

@@ -30,7 +30,7 @@ export const StepIcon = ({
   >
     <span
       className={clsx('relative z-10 flex h-8 w-8 items-center justify-center rounded-full', {
-        'group-hover:bg-pink-600 rainbow': step > index,
+        'group-hover:bg-pink-600 bg-maya': step > index,
         'bg-white border-2': step <= index,
         'border-[#ec4899]': index === step,
         'border-gray-300': index !== step,
@@ -51,7 +51,7 @@ export const StepIcon = ({
           ></path>
         </svg>
       ) : (
-        index === step && <span className="h-2.5 w-2.5 rounded-full rainbow"></span>
+        index === step && <span className="h-2.5 w-2.5 rounded-full bg-maya"></span>
       )}
     </span>
   </span>
@@ -87,7 +87,7 @@ export const StepGuide = ({
             {index !== steps.length - 1 && (
               <div
                 className={clsx('absolute left-4 top-4 -ml-px mt-0.5 h-full w-0.5', {
-                  rainbow: step > index,
+                  'bg-maya': step > index,
                   'bg-gray-300': step <= index,
                 })}
                 aria-hidden="true"
@@ -107,7 +107,7 @@ export const StepGuide = ({
               <span className="ml-4 flex min-w-0 flex-col">
                 <span
                   className={clsx('text-sm font-medium', {
-                    'rainbow-text': index === step,
+                    'text-maya': index === step,
                     'text-gray-500': step <= index,
                     'text-black': step > index,
                   })}

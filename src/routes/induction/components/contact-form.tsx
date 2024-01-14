@@ -110,7 +110,7 @@ export const ContactForm = ({
             <div className="relative group">
               <button
                 onClick={handleSubmit(save)}
-                className="transition duration-500 relative leading-none flex items-center justify-center text-white rounded-md py-2.5 text-center px-4 w-full max-w-[300px] rainbow font-bold h-9 text-sm"
+                className="transition duration-500 relative leading-none flex items-center justify-center text-white rounded-md py-2.5 text-center px-4 w-full max-w-[300px] bg-maya font-bold h-9 text-sm"
               >
                 <div className="flex gap-2 md:gap-4 margin-auto">
                   <span className="m-auto">Save</span>
@@ -120,7 +120,7 @@ export const ContactForm = ({
           </div>
         </div>
         <div className="ml-2">
-          <button className="text-white rainbow p-[3px] rounded-lg w-full max-w-[300px] font-bold h-9 text-sm">
+          <button className="text-white bg-maya p-[3px] rounded-lg w-full max-w-[300px] font-bold h-9 text-sm">
             <div className="bg-white text-black hover:bg-gray-200 flex w-full h-full items-center justify-center  rounded-md px-4">
               <div>Cancel</div>
             </div>

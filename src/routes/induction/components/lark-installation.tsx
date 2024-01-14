@@ -74,7 +74,7 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
         <div className="flex flex-col gap-4">
           <Button
             className={clsx('p-4 text-left connectai-auto-deploy-lark', {
-              'rainbow text-white': action === 'auto',
+              'bg-maya text-white': action === 'auto',
             })}
             onClick={() => setAction('auto')}
           >
@@ -82,7 +82,7 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
           </Button>
           <Button
             className={clsx('p-4 text-left', {
-              'rainbow text-white': action === 'manual',
+              'bg-maya text-white': action === 'manual',
             })}
             onClick={() => setAction('manual')}
           >
@@ -236,7 +236,7 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
                               className={clsx(
                                 'text-sm font-medium flex-grow mx-2 whitespace-nowrap',
                                 {
-                                  'rainbow-text': index === step,
+                                  'text-maya': index === step,
                                   'text-gray-500': step <= index,
                                   'text-black': step > index,
                                 },
@@ -245,7 +245,7 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
                               {stepProps.title}
                             </span>
                             {index !== steps.length - 1 && (
-                              <span className="h-1 w-full rainbow"></span>
+                              <span className="h-1 w-full bg-maya"></span>
                             )}
                           </li>
                         ))}
@@ -262,7 +262,7 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
               </Button>
 
               {step === 0 && (
-                <Button color="primary" onPress={nextStep} className="rainbow">
+                <Button color="primary" onPress={nextStep} className="bg-maya">
                   下一步
                 </Button>
               )}
@@ -274,7 +274,7 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
                   <Button
                     disabled={isMutating}
                     color="primary"
-                    className="rainbow"
+                    className="bg-maya"
                     onClick={handleSubmit(save)}
                   >
                     保存
@@ -283,7 +283,7 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
                     // TODO: remove this
                   }
                   {import.meta.env.DEV && (
-                    <Button color="primary" onPress={nextStep} className="rainbow">
+                    <Button color="primary" onPress={nextStep} className="bg-maya">
                       下一步
                     </Button>
                   )}
@@ -294,7 +294,7 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
                   <Button variant="light" onPress={prevStep}>
                     上一步
                   </Button>
-                  <Button color="primary" className="rainbow" onPress={finishSetting}>
+                  <Button color="primary" className="bg-maya" onPress={finishSetting}>
                     完成配置
                   </Button>
                 </>

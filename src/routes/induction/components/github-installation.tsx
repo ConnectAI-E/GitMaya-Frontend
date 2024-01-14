@@ -1,4 +1,3 @@
-// import githubEmptyState from '@/assets/github-empty-state.png';
 // import { Link } from 'react-router-dom';
 import { GithubIcon } from '@/components/icons';
 import { useOauthDialog } from '@/hooks';
@@ -16,7 +15,6 @@ export const GithubInstallation = ({
   });
   return (
     <main className="max-w-4xl">
-      {/* <img src={githubEmptyState} className="h-36 sm:h-64 w-auto mx-auto" /> */}
       <div className="grid grid-cols-1 items-center justify-center mt-8">
         {/* <Link className="flex items-center text-center text-sm underline text-primary" to="/login">
           <svg
@@ -38,7 +36,7 @@ export const GithubInstallation = ({
           <div>
             <div className="inline-block justify-center w-full max-w-[300px]">
               <div className="relative group">
-                <button className="transition duration-500 relative leading-none flex items-center justify-center text-white font-medium rounded-md py-2.5 text-center px-4 w-full max-w-[300px] rainbow  h-14 text-base">
+                <button className="transition duration-500 relative leading-none flex items-center justify-center text-white font-medium rounded-md py-2.5 text-center px-4 w-full max-w-[300px] bg-maya  h-14 text-base">
                   <div className="flex gap-2 md:gap-4 margin-auto">
                     <GithubIcon size={30} />
                     <span className="m-auto">Add to GitHub</span>

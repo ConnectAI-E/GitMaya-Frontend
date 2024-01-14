@@ -1,5 +1,12 @@
+import { Cobe, Actions } from './components';
+
 const Home = () => {
-  return <h1 className=" text-black dark:text-white text-center">GitMaya</h1>;
+  return (
+    <div>
+      <Cobe />
+      <Actions />
+    </div>
+  );
 };
 
 export default Home;

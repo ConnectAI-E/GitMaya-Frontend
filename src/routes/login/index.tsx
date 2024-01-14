@@ -68,11 +68,11 @@ const Login = () => {
       </svg>
       <div className="grow flex flex-col">
         <div className="w-full grow items-center justify-center flex p-2">
-          <div className="p-[1px]  rounded-xl shadow-xl rainbow">
+          <div className="p-[1px]  rounded-xl shadow-xl bg-maya">
             <div className="items-center justify-center flex flex-col gap-y-4 p-20 rounded-xl bg-[#1e293b]">
               <h1 className="text-black-light-light text-3xl font-bold">
                 <span> Welcome to </span>
-                <span className="rainbow-text font-extrabold">GitMaya</span>
+                <span className="text-maya font-extrabold">GitMaya</span>
                 <span>, let's get started!</span>
               </h1>
               <div className="flex flex-col text-left w-full gap-y-6 items-center mt-6">

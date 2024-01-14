@@ -234,6 +234,22 @@ export const SlackIcon: React.FC<IconSvgProps> = ({ size = 24, width, height, ..
     </svg>
   );
 };
+export const SlackWhiteIcon: React.FC<IconSvgProps> = ({ size = 24, width, height, ...props }) => {
+  return (
+    <svg
+      viewBox="0 0 256 256"
+      xmlns="http://www.w3.org/2000/svg"
+      width={size || width}
+      height={size || height}
+      {...props}
+    >
+      <path
+        d="M236 104a36 36 0 0 0-48-33.94V56a36 36 0 0 0-60-26.8A36 36 0 0 0 70.06 68H56a36 36 0 0 0-26.8 60A36 36 0 0 0 68 185.94V200a36 36 0 0 0 60 26.8a36 36 0 0 0 57.94-38.8H200a36 36 0 0 0 26.8-60a35.82 35.82 0 0 0 9.2-24m-36-12a12 12 0 0 1 0 24h-12v-12a12 12 0 0 1 12-12m-48-48a12 12 0 0 1 12 12v48a12 12 0 0 1-12 12h-12V56a12 12 0 0 1 12-12M92 56a12 12 0 0 1 24 0v12h-12a12 12 0 0 1-12-12M56 92h48a12 12 0 0 1 12 12v12H56a12 12 0 0 1 0-24m0 72a12 12 0 0 1 0-24h12v12a12 12 0 0 1-12 12m48 48a12 12 0 0 1-12-12v-48a12 12 0 0 1 12-12h12v60a12 12 0 0 1-12 12m60-12a12 12 0 0 1-24 0v-12h12a12 12 0 0 1 12 12m36-36h-48a12 12 0 0 1-12-12v-12h60a12 12 0 0 1 0 24"
+        fill="currentColor"
+      />
+    </svg>
+  );
+};
 
 export const LarkIcon: React.FC<IconSvgProps> = ({ size = 24, width, height, ...props }) => {
   return (
@@ -343,6 +359,27 @@ export const CopyIcon: React.FC<IconSvgProps> = ({ size = 24, width, height, ...
       {...props}
     >
       <path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path>
+    </svg>
+  );
+};
+
+export const TelegramIcon: React.FC<IconSvgProps> = ({ size = 24, width, height, ...props }) => {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      height={size || height}
+      width={size || width}
+      {...props}
+    >
+      <path
+        d="m15 10l-4 4l6 6l4-16l-18 7l4 2l2 6l3-4"
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
     </svg>
   );
 };

@@ -89,7 +89,7 @@ export const Navbar = () => {
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <Link className="flex justify-start items-center gap-1" href="/">
             <Logo />
-            <div className="text-xl font-black mx-4 text-gradient rainbow-text">GitMaya</div>
+            <div className="text-xl font-black mx-4 text-gradient text-maya">GitMaya</div>
           </Link>
         </NavbarBrand>
         <ul className="hidden lg:flex gap-4 justify-start ml-2">
@@ -146,7 +146,7 @@ export const Navbar = () => {
             />
           ) : (
             <RouterLink to={'/login'}>
-              <button className="text-white rainbow p-[3px] rounded-lg w-full max-w-[300px] font-bold h-9 text-sm">
+              <button className="text-white bg-maya p-[3px] rounded-lg w-full max-w-[300px] font-bold h-9 text-sm">
                 <div className="bg-black hover:bg-[#1e293b] flex w-full h-full items-center justify-center  rounded-md px-4">
                   {t('Sign in')}
                 </div>

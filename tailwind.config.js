@@ -9,21 +9,17 @@ export default {
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        maya: '#ECA600',
+      },
+    },
   },
   darkMode: 'class',
   plugins: [
     nextui(),
     plugin(function ({ addUtilities }) {
       addUtilities({
-        '.rainbow': {
-          backgroundImage: 'linear-gradient(to right, #eab308, #ef4444, #ec4899)',
-        },
-        '.rainbow-text': {
-          backgroundImage: 'linear-gradient(to right, #eab308, #ef4444, #ec4899)',
-          color: 'transparent',
-          'background-clip': 'text',
-        },
         '.flex-center': {
           display: 'flex',
           alignItems: 'center',
