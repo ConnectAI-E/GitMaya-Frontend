@@ -17,7 +17,7 @@
     "axios": "^1.6.5",
     "clsx": "^2.1.0",
     "cobe": "^0.6.3",
-    "framer-motion": "^10.16.16",
+    "framer-motion": "^10.18.0",
     "i18next": "^23.7.13",
     "i18next-browser-languagedetector": "^7.2.0",
     "i18next-xhr-backend": "^3.2.2",
