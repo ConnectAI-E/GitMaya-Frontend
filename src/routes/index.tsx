@@ -33,7 +33,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate to="/app/indicators" replace={true} />,
+        element: <Navigate to="/app/people" replace={true} />,
       },
       {
         path: 'indicators',
@@ -57,6 +57,15 @@ const router = createBrowserRouter([
         path: 'people',
         lazy: async () => {
           const Component = (await import('@/routes/people')).default;
+          return {
+            Component,
+          };
+        },
+      },
+      {
+        path: 'repo',
+        lazy: async () => {
+          const Component = (await import('@/routes/repo')).default;
           return {
             Component,
           };

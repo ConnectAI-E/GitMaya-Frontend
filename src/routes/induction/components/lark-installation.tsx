@@ -20,6 +20,7 @@ import useSwr from 'swr';
 import { CopyIcon } from '@/components/icons';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
+import { LarkTutior } from './lark-tutior';
 export interface LarkInstallationRef {
   isOpen: boolean;
   onOpen: () => void;
@@ -224,7 +225,9 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
             </ModalHeader>
             <ModalBody>
               <div className="flex w-full">
-                <div className="w-1/3">guide</div>
+                <div className="w-1/3">
+                  <LarkTutior />
+                </div>
                 <div className="flex-1">
                   <div>
                     <nav className="w-full">

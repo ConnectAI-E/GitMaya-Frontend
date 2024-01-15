@@ -2,13 +2,19 @@ import { GithubIcon } from '@/components/icons';
 import { Footer } from '@/layout/footer';
 import { useOauthDialog } from '@/hooks';
 import { useNavigate } from 'react-router-dom';
+import { useAccountStore } from '@/stores';
 
 const Login = () => {
   const navigate = useNavigate();
+  const updateAccount = useAccountStore.use.updateAccount();
+
   const handleSignInGithub = useOauthDialog({
     url: '/api/github/oauth',
     event: 'oauth',
-    callback: () => navigate('/app'),
+    callback: () => {
+      navigate('/app/people');
+      updateAccount();
+    },
   });
 
   return (

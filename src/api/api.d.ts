@@ -102,6 +102,17 @@ declare namespace Github {
     status: number;
     team_id: string;
   }
+
+  interface Repo {
+    chat: {
+      chat_id: string;
+      id: string;
+      name: string;
+    };
+    id: string;
+    name: string;
+    users: User[];
+  }
 }
 
 declare namespace Lark {

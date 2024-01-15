@@ -8,11 +8,19 @@ export const appSiteConfig = {
       label: 'People',
       href: '/app/people',
     },
+    {
+      label: 'Repo',
+      href: '/app/repo',
+    },
   ],
   navMenuItems: [
     {
       label: 'People',
       href: '/app/people',
+    },
+    {
+      label: 'Repo',
+      href: '/app/repo',
     },
     {
       label: 'Logout',

@@ -25,3 +25,16 @@ export const installApp = (team_id: string, platform: string, data: unknown) =>
   request.post(`/api/team/${team_id}/${platform}/app`, data);
 
 export const switchTeam = (data: { current_team: string }) => request.post('/api/account', data);
+
+export const getRepos = (
+  team_id: string,
+  params?: {
+    page: number;
+    size: number;
+  },
+) => request.get<Github.Repo[]>(`/api/team/${team_id}/repo`, { params });
+
+export const createChat = (team_id: string, repo_id: string) =>
+  request.post(`/api/team/${team_id}/repo/${repo_id}/chat`, {
+    name: '', // default
+  });

@@ -36,6 +36,7 @@ export const Navbar = () => {
   const updateAccount = useAccountStore.use.updateAccount();
 
   const team_id = account?.current_team as string;
+  console.log('Dogtiti ~ Navbar ~ team_id:', team_id);
 
   const { trigger } = useSWRMutation(
     `api/account`,
@@ -75,7 +76,6 @@ export const Navbar = () => {
     if (team_id === 'create') {
       navigate('/app/induction');
     } else {
-      navigate('/app/people');
       await trigger({
         current_team: team_id,
       });
@@ -116,7 +116,7 @@ export const Navbar = () => {
             className="max-w-xs min-w-48"
             size="sm"
             onChange={selectTeam}
-            defaultSelectedKeys={[team_id || 'create']}
+            selectedKeys={[team_id || 'create']}
             items={teams}
             disallowEmptySelection
           >
