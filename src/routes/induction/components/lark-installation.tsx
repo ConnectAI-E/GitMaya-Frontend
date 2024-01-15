@@ -71,7 +71,7 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
 
     return (
       <div>
-        <h1 className="text-lg font-bold mb-4">创建机器人</h1>
+        <h1 className="text-2xl font-bold mb-4">创建机器人</h1>
         <div className="flex flex-col gap-4">
           <Button
             className={clsx('p-4 text-left connectai-auto-deploy-lark', {
@@ -163,7 +163,7 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
   };
 
   const StepThird = () => {
-    const callbackUrl = `${location.origin}/api/feishu/hook/${teamInfo?.im_application.app_id}`;
+    const callbackUrl = `${location.origin}/api/feishu/hook/${teamInfo?.im_application?.app_id}`;
 
     const copyCallbackUrl = () => {
       navigator.clipboard.writeText(callbackUrl);
@@ -216,7 +216,7 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
   };
 
   return (
-    <Modal size={'4xl'} isOpen={isOpen} onClose={onClose}>
+    <Modal size={'5xl'} isOpen={isOpen} onClose={onClose}>
       <ModalContent>
         {(onClose) => (
           <>
@@ -224,9 +224,9 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
               <LarkIcon /> <span>Lark Setting</span>
             </ModalHeader>
             <ModalBody>
-              <div className="flex w-full">
-                <div className="w-1/3">
-                  <LarkTutior />
+              <div className="flex w-full gap-4">
+                <div className="w-1/2">
+                  <LarkTutior step={step} />
                 </div>
                 <div className="flex-1">
                   <div>

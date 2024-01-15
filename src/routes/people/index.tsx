@@ -13,7 +13,7 @@ import {
   Spinner,
 } from '@nextui-org/react';
 import { useCallback } from 'react';
-import { getPlatformMember, getTeamMember, bindTeamMember } from '@/api';
+import { getPlatformMember, getTeamMember, bindTeamMember, updatePlatformUser } from '@/api';
 import useSwr from 'swr';
 import useSWRMutation from 'swr/mutation';
 import { useAccountStore } from '@/stores';
@@ -49,6 +49,10 @@ const People = () => {
         };
       },
     ) => bindTeamMember(team_id, arg),
+  );
+
+  const { trigger: triggerLarkUser } = useSWRMutation(`api/team/${team_id}/lark/user`, () =>
+    updatePlatformUser(team_id, 'lark'),
   );
 
   const { data, mutate } = useSwr(team_id ? `/api/team/${team_id}/member` : null, () =>
@@ -118,6 +122,7 @@ const People = () => {
   const refreshUser = async () => {
     mutate();
     mutateLark();
+    triggerLarkUser();
   };
 
   return (

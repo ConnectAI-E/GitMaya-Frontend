@@ -72,11 +72,11 @@ export const Footer = ({ className }: { className?: string }) => {
           <div>
             We use cookies in this website to give you the best experience on our site. To find out
             more, read our
-            <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-400">
+            <a href="/" target="_blank" rel="noopener noreferrer" className="text-blue-400">
               <span> privacy policy </span>
             </a>
             and
-            <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-blue-400">
+            <a href="/" target="_blank" rel="noopener noreferrer" className="text-blue-400">
               <span> cookies policy </span>
             </a>
           </div>

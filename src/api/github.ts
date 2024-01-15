@@ -38,3 +38,6 @@ export const createChat = (team_id: string, repo_id: string) =>
   request.post(`/api/team/${team_id}/repo/${repo_id}/chat`, {
     name: '', // default
   });
+
+export const updatePlatformUser = (team_id: string, platform: string) =>
+  request.post(`/api/team/${team_id}/${platform}/user`);
