@@ -3,7 +3,7 @@ import { isEmpty } from 'lodash-es';
 
 export const useOauthDialog = ({
   url,
-  option = 'left=500,top=300,width=480,height=640',
+  option = 'left=500,top=300,width=1024,height=800',
   event,
   callback,
 }: {
@@ -21,6 +21,7 @@ export const useOauthDialog = ({
           dialog.current.close();
         }
         callback?.(e.data);
+        console.log('Dogtiti ~ e:', e);
         window.removeEventListener('message', eventListener);
       }
     },

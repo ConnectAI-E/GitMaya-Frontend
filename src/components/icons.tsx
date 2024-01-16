@@ -421,9 +421,9 @@ export const YoutubeIcon: React.FC<IconSvgProps> = ({ size = 24, width, height, 
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       height={size || height}
       width={size || width}
       {...props}

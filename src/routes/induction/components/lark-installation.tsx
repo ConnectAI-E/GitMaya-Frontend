@@ -56,7 +56,7 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
     },
   ];
 
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, getValues } = useForm({
     defaultValues: {
       name: '',
       app_id: '',
@@ -163,7 +163,9 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
   };
 
   const StepThird = () => {
-    const callbackUrl = `${location.origin}/api/feishu/hook/${teamInfo?.im_application?.app_id}`;
+    const callbackUrl = `${location.origin}/api/feishu/hook/${
+      teamInfo?.im_application?.app_id ?? getValues('app_id')
+    }`;
 
     const copyCallbackUrl = () => {
       navigator.clipboard.writeText(callbackUrl);

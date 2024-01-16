@@ -6,10 +6,10 @@ const Layout = () => {
   return (
     <div className="relative flex flex-col h-screen">
       <Navbar />
-      <main className="container mx-auto max-w-7xl pt-32 px-6 flex-grow">
+      <main className="pt-32 flex-grow w-full">
         <Outlet />
       </main>
-      <Footer />
+      <Footer className="bg-dark" />
     </div>
   );
 };

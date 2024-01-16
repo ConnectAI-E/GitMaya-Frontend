@@ -89,6 +89,7 @@ const Repo = () => {
             className="justify-start"
             isBordered
             max={3}
+            size="sm"
             renderCount={(count) => (
               <div className="flex items-center">
                 <Tooltip

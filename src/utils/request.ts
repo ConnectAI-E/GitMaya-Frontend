@@ -47,6 +47,7 @@ request.interceptors.request.use((config) => {
 request.interceptors.response.use(
   (response) => {
     handleRequest(-1);
+
     return response.data;
   },
   (error) => {

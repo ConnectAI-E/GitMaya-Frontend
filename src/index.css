@@ -12,6 +12,15 @@
   @apply light text-foreground bg-background;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 @property --gradient-angle {
   syntax: '<angle>'; /* <- defined as type angle for the transition to work */
   initial-value: 360deg;

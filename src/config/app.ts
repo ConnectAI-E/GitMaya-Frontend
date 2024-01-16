@@ -26,10 +26,10 @@ export const appSiteConfig = {
     },
   ],
   links: {
-    github: 'https://github.com/ConnectAI-E/GitMaya-Frontend',
-    twitter: 'https://github.com/ConnectAI-E/GitMaya-Frontend',
-    docs: 'https://github.com/ConnectAI-E/GitMaya-Frontend',
-    discord: 'https://github.com/ConnectAI-E/GitMaya-Frontend',
-    sponsor: 'https://github.com/ConnectAI-E/GitMaya-Frontend',
+    github: 'https://github.com/ConnectAI-E/GitMaya',
+    twitter: 'https://github.com/ConnectAI-E/GitMaya',
+    docs: 'https://github.com/ConnectAI-E/GitMaya',
+    discord: 'https://github.com/ConnectAI-E/GitMaya',
+    sponsor: 'https://github.com/ConnectAI-E/GitMaya',
   },
 };

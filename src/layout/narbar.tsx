@@ -8,12 +8,13 @@ import {
   NavbarMenuItem,
 } from '@nextui-org/navbar';
 import { Link } from '@nextui-org/link';
+import { Tooltip, Image } from '@nextui-org/react';
 
 import { link as linkStyles } from '@nextui-org/theme';
 
 import { siteConfig } from '@/config';
 import clsx from 'clsx';
-import { GithubIcon, DiscordIcon, Logo } from '@/components/icons';
+import { GithubIcon, Logo, LarkWhiteIcon } from '@/components/icons';
 // import { ThemeSwitch } from '@/components/theme-switch';
 import { I18nSwitch } from '@/components/i18n-switch';
 
@@ -21,6 +22,7 @@ import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
 import { useAccountStore } from '@/stores';
 import { Avatar } from '@/components/avatar';
+import LarkQR from '@/assets/lark-group-QR.jpg';
 
 export const Navbar = () => {
   const account = useAccountStore.use.account();
@@ -57,9 +59,15 @@ export const Navbar = () => {
           <Link isExternal href={siteConfig.links.github} aria-label="Github">
             <GithubIcon className="text-default-500" />
           </Link>
-          <Link isExternal href={siteConfig.links.discord} aria-label="Discord">
-            <DiscordIcon className="text-default-500" />
-          </Link>
+          <Tooltip
+            content={<Image src={LarkQR} width={300} />}
+            placement="bottom"
+            className="bg-dark"
+          >
+            <span className="cursor-pointer">
+              <LarkWhiteIcon className="text-default-500" />
+            </span>
+          </Tooltip>
           {/* <ThemeSwitch /> */}
           <I18nSwitch />
         </NavbarItem>

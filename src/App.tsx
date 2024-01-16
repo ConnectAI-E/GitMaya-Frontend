@@ -4,6 +4,7 @@ import router from '@/routes';
 import { useAccountStore } from '@/stores';
 import { useEffect } from 'react';
 import { Toaster } from 'sonner';
+
 function App() {
   const getAccount = useAccountStore.use.updateAccount();
   useEffect(() => {

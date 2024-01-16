@@ -2,7 +2,7 @@ import { Cobe, Actions } from './components';
 
 const Home = () => {
   return (
-    <div>
+    <div className="bg-dark pb-8">
       <Cobe />
       <Actions />
     </div>

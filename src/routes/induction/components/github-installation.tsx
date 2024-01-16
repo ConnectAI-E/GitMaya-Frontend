@@ -11,7 +11,9 @@ export const GithubInstallation = ({
   const handleSignInGithub = useOauthDialog({
     url: '/api/github/install',
     event: 'installation',
-    callback: () => setStep((step) => step + 1),
+    callback: () => {
+      setStep((step) => step + 1);
+    },
   });
   return (
     <main className="max-w-4xl">
