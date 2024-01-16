@@ -1,8 +1,6 @@
 export type AppSiteConfig = typeof appSiteConfig;
 
 export const appSiteConfig = {
-  name: 'Next.js + NextUI',
-  description: 'Make beautiful websites regardless of your design experience.',
   navItems: [
     {
       label: 'People',

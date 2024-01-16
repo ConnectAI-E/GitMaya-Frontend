@@ -41,3 +41,11 @@ export const createChat = (team_id: string, repo_id: string) =>
 
 export const updatePlatformUser = (team_id: string, platform: string) =>
   request.post(`/api/team/${team_id}/${platform}/user`);
+
+export const updateTeamContact = (data: {
+  first_name: string;
+  last_name?: string;
+  email: string;
+  role: string;
+  newsletter?: boolean;
+}) => request.post('/api/team/contact', data);
