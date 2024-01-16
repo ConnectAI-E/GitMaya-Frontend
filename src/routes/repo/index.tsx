@@ -93,13 +93,13 @@ const Repo = () => {
               <div className="flex items-center">
                 <Tooltip
                   content={repo.users
-                    ?.slice(0, count)
+                    ?.slice(count)
                     ?.map((user) => user.name)
                     .join(', ')}
                 >
                   <Avatar
                     icon={<AvatarIcon />}
-                    name={count.toString()}
+                    name={`+${count?.toString()}`}
                     classNames={{
                       icon: 'text-black/80',
                     }}
