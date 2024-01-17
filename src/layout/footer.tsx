@@ -27,7 +27,7 @@ export const Footer = ({ className }: { className?: string }) => {
             <Tooltip
               content={<Image src={LarkQR} width={300} />}
               placement="top"
-              className="bg-dark"
+              className="p-0 bg-transparent"
             >
               <div className="cursor-pointer flex-center gap-4">
                 <LarkWhiteIcon />
