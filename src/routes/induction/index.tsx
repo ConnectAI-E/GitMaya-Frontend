@@ -1,7 +1,8 @@
 import { Footer } from '@/layout/footer';
 import { ContactForm, StepGuide, GithubInstallation, WorkSpaceInstallation } from './components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { HeaderContent } from '@/layout/app';
+import { useTeamInfoStore } from '@/stores';
 
 type StepComponentType = React.FC<{
   step: number;
@@ -54,9 +55,15 @@ const stepHeaders: Record<number, JSX.Element> = {
 };
 
 const Induction = () => {
+  const teamInfo = useTeamInfoStore.use.teamInfo();
   const [step, setStep] = useState(0);
   const StepComponent = stepComponents[step];
   const StepHeader = stepHeaders[step];
+  useEffect(() => {
+    if (teamInfo?.code_application && !teamInfo.im_application) {
+      setStep(2);
+    }
+  }, [teamInfo?.code_application, teamInfo?.im_application]);
 
   return (
     <div className="bg-black-light-light flex-grow flex flex-col">

@@ -62,7 +62,7 @@ export const Navbar = () => {
           <Tooltip
             content={<Image src={LarkQR} width={300} />}
             placement="bottom"
-            className="bg-dark"
+            className="bg-dark p-0"
           >
             <span className="cursor-pointer">
               <LarkWhiteIcon className="text-default-500" />

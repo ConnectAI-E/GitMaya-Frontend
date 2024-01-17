@@ -46,13 +46,13 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
 
   const steps = [
     {
-      title: '创建机器人',
+      title: 'Create Robot',
     },
     {
-      title: '填写配置信息',
+      title: 'Configuration',
     },
     {
-      title: '获取回调地址',
+      title: 'Callback URL',
     },
   ];
 
@@ -71,7 +71,7 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
 
     return (
       <div>
-        <h1 className="text-2xl font-bold mb-4">创建机器人</h1>
+        <h1 className="text-2xl font-bold mb-4">Create Robot</h1>
         <div className="flex flex-col gap-4">
           <Button
             className={clsx('p-4 text-left connectai-auto-deploy-lark', {
@@ -79,7 +79,7 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
             })}
             onClick={() => setAction('auto')}
           >
-            一键重新部署至（Connect-AI）
+            One-click Deployment
           </Button>
           <Button
             className={clsx('p-4 text-left', {
@@ -87,7 +87,7 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
             })}
             onClick={() => setAction('manual')}
           >
-            自行前往开发者平台，创建应用
+            Go to the developer platform yourself and create an application
           </Button>
         </div>
       </div>
@@ -218,7 +218,7 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
   };
 
   return (
-    <Modal size={'5xl'} isOpen={isOpen} onClose={onClose}>
+    <Modal size="5xl" className="max-w-[1200px]" isOpen={isOpen} onClose={onClose}>
       <ModalContent>
         {(onClose) => (
           <>
@@ -263,18 +263,18 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
             </ModalBody>
             <ModalFooter>
               <Button color="danger" variant="light" onPress={onClose}>
-                取消
+                Cancle
               </Button>
 
               {step === 0 && (
                 <Button color="primary" onPress={nextStep} className="bg-maya">
-                  下一步
+                  Next
                 </Button>
               )}
               {step === 1 && (
                 <>
                   <Button variant="light" onPress={prevStep}>
-                    上一步
+                    Prev
                   </Button>
                   <Button
                     disabled={isMutating}
@@ -282,14 +282,14 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
                     className="bg-maya"
                     onClick={handleSubmit(save)}
                   >
-                    保存
+                    Save
                   </Button>
                   {
                     // TODO: remove this
                   }
                   {import.meta.env.DEV && (
                     <Button color="primary" onPress={nextStep} className="bg-maya">
-                      下一步
+                      Next
                     </Button>
                   )}
                 </>
@@ -297,10 +297,10 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
               {step === 2 && (
                 <>
                   <Button variant="light" onPress={prevStep}>
-                    上一步
+                    Prev
                   </Button>
                   <Button color="primary" className="bg-maya" onPress={finishSetting}>
-                    完成配置
+                    Configuration Completed
                   </Button>
                 </>
               )}

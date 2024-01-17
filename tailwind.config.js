@@ -17,7 +17,20 @@ export default {
   },
   darkMode: 'class',
   plugins: [
-    nextui(),
+    nextui({
+      themes: {
+        light: {
+          colors: {
+            focus: '#ECA600',
+          },
+        },
+        dark: {
+          colors: {
+            focus: '#ECA600',
+          },
+        },
+      },
+    }),
     plugin(function ({ addUtilities }) {
       addUtilities({
         '.flex-center': {
