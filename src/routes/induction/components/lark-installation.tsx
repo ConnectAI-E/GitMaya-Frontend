@@ -20,6 +20,8 @@ import { CopyIcon } from '@/components/icons';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
 import { LarkTutior } from './lark-tutior';
+import { useOauthDialog } from '@/hooks';
+
 export interface LarkInstallationRef {
   isOpen: boolean;
   onOpen: () => void;
@@ -64,6 +66,20 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
 
   const StepOne = () => {
     const [action, setAction] = useState('auto');
+    const navigate = useNavigate();
+
+    const app_id = teamInfo?.im_application?.app_id ?? getValues('app_id');
+    const name = teamInfo?.team?.name || 'GitMaya'
+    const handleOneClickDeploy = useOauthDialog({
+      // 这里模拟有app_id的情况，奇怪的是没有走到回调
+      url: `/api/team/${team_id}/lark/app?app_id=${app_id}&name=${name}`,
+      event: 'installation',
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      callback: async (data: any) => {
+        console.log('data', data);
+        navigate('/app/people');
+      },
+    });
 
     return (
       <div>
@@ -73,7 +89,7 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
             className={clsx('p-4 text-left connectai-auto-deploy-lark', {
               'bg-maya text-white': action === 'auto',
             })}
-            onClick={() => setAction('auto')}
+            onClick={handleOneClickDeploy}
           >
             One-click Deployment
           </Button>
