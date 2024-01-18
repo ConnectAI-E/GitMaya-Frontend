@@ -68,6 +68,7 @@ export const Navbar = () => {
             <GithubIcon className="text-default-500" />
           </Link>
           <Tooltip
+            delay={300}
             content={<Image src={LarkQR} width={300} />}
             placement="bottom"
             className="p-0 bg-transparent"
