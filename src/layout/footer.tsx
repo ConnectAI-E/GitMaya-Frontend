@@ -44,15 +44,15 @@ export const Footer = ({ className }: { className?: string }) => {
       >
         <div className="max-w-7xl mx-auto px-5 py-5 sm:px-6 flex items-center">
           <div>
-            We use cookies in this website to give you the best experience on our site. To find out
-            more, read our
-            <a href="/" target="_blank" rel="noopener noreferrer" className="text-blue-400">
-              <span> privacy policy </span>
-            </a>
-            and
-            <a href="/" target="_blank" rel="noopener noreferrer" className="text-blue-400">
-              <span> cookies policy </span>
-            </a>
+            We use cookies in this website to give you the best experience on our site.
+            {/*To find out more, read our*/}
+            {/*<a href="/" target="_blank" rel="noopener noreferrer" className="text-blue-400">*/}
+            {/*  <span> privacy policy </span>*/}
+            {/*</a>*/}
+            {/*and*/}
+            {/*<a href="/" target="_blank" rel="noopener noreferrer" className="text-blue-400">*/}
+            {/*  <span> cookies policy </span>*/}
+            {/*</a>*/}
           </div>
           <div className="ml-3">
             <button
