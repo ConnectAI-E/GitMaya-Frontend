@@ -42,8 +42,8 @@ export const Footer = ({ className }: { className?: string }) => {
           `${showCookie ? 'block' : 'hidden'}`,
         )}
       >
-        <div className="max-w-7xl mx-auto px-5 py-5 sm:px-6 flex items-center">
-          <div>
+        <div className="max-w-7xl mx-auto px-5 py-5 sm:px-6 flex items-center justify-center h-full">
+          <div className="flex items-center justify-center">
             We use cookies in this website to give you the best experience on our site.
             {/*To find out more, read our*/}
             {/*<a href="/" target="_blank" rel="noopener noreferrer" className="text-blue-400">*/}
@@ -54,12 +54,12 @@ export const Footer = ({ className }: { className?: string }) => {
             {/*  <span> cookies policy </span>*/}
             {/*</a>*/}
           </div>
-          <div className="ml-3">
+          <div className="ml-3 flex items-center justify-center">
             <button
               onClick={() => setShowCookie(false)}
               className="text-white bg-maya p-[3px] rounded-lg w-full max-w-[300px] font-bold h-9 text-sm"
             >
-              <div className="bg-black hover:bg-[#1e293b] flex w-full h-full items-center justify-center  rounded-md px-4">
+              <div className="bg-black hover:bg-[#1e293b] flex w-full h-full items-center justify-center rounded-md px-4">
                 <div>Okay</div>
               </div>
             </button>
