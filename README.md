@@ -21,7 +21,7 @@
 
 `gitmaya` is inspired by the following tools.
 
-- [pullpo](https://pullpo.io/)
+- [GitMaya](https://gitmaya.com/)
 - [graphite](https://graphite.dev/)
 - [typoapp](https://typoapp.io/)
 
