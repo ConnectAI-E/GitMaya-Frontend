@@ -72,9 +72,11 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
     const [action, setAction] = useState('auto');
     const navigate = useNavigate();
 
+    const app_id = teamInfo?.im_application?.app_id ?? getValues('app_id');
+    const name = teamInfo?.name
     const handleOneClickDeploy = useOauthDialog({
       // 这里模拟有app_id的情况，奇怪的是没有走到回调
-      url: `/api/team/${team_id}/lark/app?app_id=cli_a52d676723f99013&name=GitMaya-test-lloyd`,
+      url: `/api/team/${team_id}/lark/app?app_id=${app_id}&name=${name}`,
       event: 'installation',
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       callback: async (data: any) => {
