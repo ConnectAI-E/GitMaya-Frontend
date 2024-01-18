@@ -1,7 +1,6 @@
-import { createBrowserRouter, Navigate, redirect } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import Layout from '@/layout';
 import AppLayout from '@/layout/app';
-import { getAccount } from '@/api';
 
 const router = createBrowserRouter([
   {
@@ -31,14 +30,6 @@ const router = createBrowserRouter([
   {
     path: '/app',
     element: <AppLayout />,
-    loader: async () => {
-      try {
-        await getAccount();
-      } catch (error) {
-        return redirect('/login');
-      }
-      return null;
-    },
     children: [
       {
         index: true,

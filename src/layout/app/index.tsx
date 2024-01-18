@@ -1,7 +1,13 @@
 import { Outlet } from 'react-router-dom';
 import { Navbar } from '@/layout/app/navbar';
+import { useAccountStore } from '@/stores';
+import { useEffect } from 'react';
 
 const AppLayout = () => {
+  const getAccount = useAccountStore.use.updateAccount();
+  useEffect(() => {
+    getAccount();
+  }, [getAccount]);
   return (
     <div className="relative flex flex-col h-screen ">
       <Navbar />

@@ -148,7 +148,7 @@ const People = () => {
             <span className="sr-only">Info</span>
             <div>
               <span className="font-medium">Configuration needed!</span> Please, associate the
-              GitHub username to the respective Slack handle of each of your team members.
+              GitHub username to the respective Lark handle of each of your team members.
             </div>
           </div>
         </Hero>
