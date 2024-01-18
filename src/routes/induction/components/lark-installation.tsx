@@ -73,7 +73,7 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
     const navigate = useNavigate();
 
     const app_id = teamInfo?.im_application?.app_id ?? getValues('app_id');
-    const name = teamInfo?.name
+    const name = teamInfo?.team?.name || 'GitMaya'
     const handleOneClickDeploy = useOauthDialog({
       // 这里模拟有app_id的情况，奇怪的是没有走到回调
       url: `/api/team/${team_id}/lark/app?app_id=${app_id}&name=${name}`,
