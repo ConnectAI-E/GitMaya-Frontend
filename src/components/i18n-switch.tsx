@@ -9,6 +9,7 @@ export const I18nSwitch = () => {
   return (
     <div className="flex items-center gap-4">
       <Tooltip
+        delay={100}
         content={
           <div className="bg-default-300 flex flex-col rounded-xl">
             <Button
