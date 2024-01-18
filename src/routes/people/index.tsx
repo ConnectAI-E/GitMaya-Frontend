@@ -12,12 +12,21 @@ import {
   SelectItem,
   Spinner,
 } from '@nextui-org/react';
-import { useCallback } from 'react';
-import { getPlatformMember, getTeamMember, bindTeamMember, updatePlatformUser } from '@/api';
+import { useCallback, useState, useEffect, useMemo } from 'react';
+import {
+  getPlatformMember,
+  getTeamMember,
+  bindTeamMember,
+  updatePlatformUser,
+  getTaskStatus,
+} from '@/api';
 import useSwr from 'swr';
 import useSWRMutation from 'swr/mutation';
 import { useAccountStore } from '@/stores';
 import { RefreshIcon } from '@/components/icons';
+import { motion, useAnimation } from 'framer-motion';
+import clsx from 'clsx';
+import { toast } from 'sonner';
 
 const columns = [
   {
@@ -32,6 +41,9 @@ const columns = [
 ];
 
 const People = () => {
+  const controls = useAnimation();
+  const [taskId, setTaskId] = useState<string>('');
+  const [refreshInterval, setRefreshInterval] = useState(0);
   const account = useAccountStore.use.account();
 
   const team_id = account?.current_team as string;
@@ -59,6 +71,16 @@ const People = () => {
     getTeamMember(team_id),
   );
 
+  const { data: taskStatusData } = useSwr(
+    team_id && taskId ? `/api/team/${team_id}/task/${taskId}` : null,
+    () => getTaskStatus(team_id, taskId),
+    {
+      refreshInterval,
+    },
+  );
+
+  const taskStatus = taskStatusData?.data?.status;
+
   const {
     data: larkUserData,
     isLoading,
@@ -67,22 +89,24 @@ const People = () => {
     getPlatformMember<Lark.User[]>(team_id, 'lark'),
   );
 
-  const teamMember = data?.data || [];
+  const larkUsers = useMemo(() => larkUserData?.data, [larkUserData]);
+  const teamMember = useMemo(() => data?.data || [], [data]);
 
-  const larkUsers = larkUserData?.data;
-
-  const bindMember = async (e: React.ChangeEvent<HTMLSelectElement>, user: Github.TeamMember) => {
-    const { value } = e.target;
-    try {
-      await trigger({
-        code_user_id: user.code_user.id,
-        im_user_id: value,
-      });
-      mutate();
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const bindMember = useCallback(
+    async (e: React.ChangeEvent<HTMLSelectElement>, user: Github.TeamMember) => {
+      const { value } = e.target;
+      try {
+        await trigger({
+          code_user_id: user.code_user.id,
+          im_user_id: value,
+        });
+        mutate();
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [mutate, trigger],
+  );
 
   const renderCell = useCallback(
     (user: Github.TeamMember, columnKey: string) => {
@@ -116,14 +140,33 @@ const People = () => {
           return null;
       }
     },
-    [larkUsers],
+    [bindMember, larkUsers],
   );
 
-  const refreshUser = async () => {
+  const refreshUser = useCallback(async () => {
     mutate();
     mutateLark();
-    triggerLarkUser();
-  };
+    toast.success('Refreshed!');
+  }, [mutate, mutateLark]);
+
+  const refreshUserTask = useCallback(async () => {
+    const { data } = await triggerLarkUser();
+    setTaskId(data?.task_id);
+  }, [triggerLarkUser]);
+
+  useEffect(() => {
+    if (taskStatus === 'PENDING') {
+      controls.start({
+        rotate: 360,
+        transition: { duration: 2, repeat: Infinity },
+      });
+      setRefreshInterval(1000);
+    } else if (taskStatus === 'SUCCESS') {
+      controls.stop();
+      refreshUser();
+      setRefreshInterval(0);
+    }
+  }, [taskStatus, controls, refreshUser]);
 
   return (
     <div className="flex-grow flex flex-col">
@@ -157,26 +200,35 @@ const People = () => {
             <Spinner label="Loading..." color="warning" className="absolute inset-0" />
           ) : (
             <Table>
-              <TableHeader columns={columns}>
-                {(column) => {
-                  return (
-                    <TableColumn key={column.uid} align="start">
-                      <div className="flex items-center gap-2">
-                        {column.name}
-                        {column.uid !== 'role' && (
-                          <RefreshIcon size={18} className="cursor-pointer" onClick={refreshUser} />
-                        )}
-                      </div>
-                    </TableColumn>
-                  );
-                }}
+              <TableHeader>
+                {columns.map((column) => (
+                  <TableColumn key={column.uid} align="start">
+                    <div className="flex items-center gap-2">
+                      {column.name}
+                      {column.uid === 'github' && (
+                        <RefreshIcon size={18} className="cursor-pointer" onClick={refreshUser} />
+                      )}
+                      {column.uid === 'lark' && (
+                        <motion.div animate={controls}>
+                          <RefreshIcon
+                            size={18}
+                            className={clsx('cursor-pointer', {
+                              'cursor-not-allowed pointer-events-none': taskStatus === 'PENDING',
+                            })}
+                            onClick={refreshUserTask}
+                          />
+                        </motion.div>
+                      )}
+                    </div>
+                  </TableColumn>
+                ))}
               </TableHeader>
-              <TableBody items={teamMember}>
-                {(item) => (
+              <TableBody>
+                {teamMember.map((item) => (
                   <TableRow key={item.id}>
                     {(columnKey) => <TableCell>{renderCell(item, columnKey as string)}</TableCell>}
                   </TableRow>
-                )}
+                ))}
               </TableBody>
             </Table>
           )}

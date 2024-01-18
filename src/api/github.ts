@@ -49,3 +49,6 @@ export const updateTeamContact = (data: {
   role: string;
   newsletter?: boolean;
 }) => request.post('/api/team/contact', data);
+
+export const getTaskStatus = (team_id: string, task_id: string) =>
+  request.get<Lark.TaskStatus>(`/api/team/${team_id}/task/${task_id}`);

@@ -130,4 +130,10 @@ declare namespace Lark {
     avatar: string;
     email?: string;
   }
+
+  interface TaskStatus {
+    result: string;
+    status: 'PENDING' | 'SUCCESS';
+    task_id: string;
+  }
 }

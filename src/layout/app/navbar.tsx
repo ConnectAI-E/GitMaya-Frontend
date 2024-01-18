@@ -102,6 +102,7 @@ export const Navbar = () => {
         current_team: team_id,
       });
       updateAccount();
+      navigate('/app/people', { replace: true });
     }
   };
 
