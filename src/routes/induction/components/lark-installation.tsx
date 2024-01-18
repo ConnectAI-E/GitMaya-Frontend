@@ -41,6 +41,30 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
   );
 
   const teamInfo = useTeamInfoStore.use.teamInfo();
+  const [action, setAction] = useState('auto');
+
+  const { control, handleSubmit, getValues } = useForm({
+    defaultValues: {
+      name: '',
+      app_id: '',
+      app_secret: '',
+      encrypt_key: '',
+      verification_token: '',
+    },
+  });
+
+  const app_id = teamInfo?.im_application?.app_id ?? getValues('app_id');
+  const name = teamInfo?.team?.name || 'GitMaya';
+
+  const handleOneClickDeploy = useOauthDialog({
+    url: `/api/team/${team_id}/lark/app?app_id=${app_id}&name=${name}`,
+    event: 'installation',
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    callback: async (data: any) => {
+      console.log('data', data);
+      navigate('/app/people');
+    },
+  });
 
   const steps = [
     {
@@ -54,33 +78,7 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
     },
   ];
 
-  const { control, handleSubmit, getValues } = useForm({
-    defaultValues: {
-      name: '',
-      app_id: '',
-      app_secret: '',
-      encrypt_key: '',
-      verification_token: '',
-    },
-  });
-
   const StepOne = () => {
-    const [action, setAction] = useState('auto');
-    const navigate = useNavigate();
-
-    const app_id = teamInfo?.im_application?.app_id ?? getValues('app_id');
-    const name = teamInfo?.team?.name || 'GitMaya'
-    const handleOneClickDeploy = useOauthDialog({
-      // 这里模拟有app_id的情况，奇怪的是没有走到回调
-      url: `/api/team/${team_id}/lark/app?app_id=${app_id}&name=${name}`,
-      event: 'installation',
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      callback: async (data: any) => {
-        console.log('data', data);
-        navigate('/app/people');
-      },
-    });
-
     return (
       <div>
         <h1 className="text-2xl font-bold mb-4">Create Robot</h1>
@@ -89,7 +87,10 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
             className={clsx('p-4 text-left connectai-auto-deploy-lark', {
               'bg-maya text-white': action === 'auto',
             })}
-            onClick={handleOneClickDeploy}
+            onClick={() => {
+              handleOneClickDeploy();
+              setAction('auto');
+            }}
           >
             One-click Deployment
           </Button>
@@ -229,6 +230,14 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
     navigate('/app/people');
   };
 
+  const setupRobot = () => {
+    if (action === 'auto') {
+      handleOneClickDeploy();
+    } else {
+      nextStep();
+    }
+  };
+
   return (
     <Modal size="5xl" className="max-w-[1200px]" isOpen={isOpen} onClose={onClose}>
       <ModalContent>
@@ -279,7 +288,7 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
               </Button>
 
               {step === 0 && (
-                <Button color="primary" onPress={nextStep} className="bg-maya">
+                <Button color="primary" onPress={setupRobot} className="bg-maya">
                   Next
                 </Button>
               )}
