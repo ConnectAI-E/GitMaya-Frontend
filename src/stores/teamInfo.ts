@@ -5,7 +5,6 @@ import { getTeamInfo } from '@/api';
 interface TeamInfoState {
   teamInfo: Github.TeamInfo | null;
   setTeam: (teamInfo: Github.TeamInfo) => void;
-
   updateTeamInfo: (team_id: string) => Promise<void>;
 }
 

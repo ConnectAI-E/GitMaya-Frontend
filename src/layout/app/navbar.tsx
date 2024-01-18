@@ -41,6 +41,7 @@ import {
 import { useEffect, useMemo } from 'react';
 import useSWRMutation from 'swr/mutation';
 import LarkQR from '@/assets/lark-group-QR.jpg';
+import { isNull } from 'lodash-es';
 
 export const Navbar = () => {
   const location = useLocation();
@@ -104,15 +105,10 @@ export const Navbar = () => {
     }
   };
 
-  const haveIMApp = teamInfo?.im_application;
-
-  const onInductionPage = useMemo(() => {
-    return location.pathname === '/app/induction';
-  }, [location.pathname]);
-
   const shouldShowOnboarding = useMemo(() => {
-    return !onInductionPage && (!haveIMApp || !account?.current_team);
-  }, [account?.current_team, haveIMApp, onInductionPage]);
+    const onInductionPage = location.pathname === '/app/induction';
+    return !onInductionPage && (isNull(teamInfo?.im_application) || isNull(account?.current_team));
+  }, [account?.current_team, location.pathname, teamInfo?.im_application]);
 
   useEffect(() => {
     if (shouldShowOnboarding) {

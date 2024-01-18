@@ -14,9 +14,8 @@ import { StepIcon } from './step-guide';
 import { LarkIcon } from '@/components/icons';
 import { useForm, Controller } from 'react-hook-form';
 import useSWRMutation from 'swr/mutation';
-import { installApp, getTeamInfo } from '@/api';
-import { useAccountStore } from '@/stores';
-import useSwr from 'swr';
+import { installApp } from '@/api';
+import { useAccountStore, useTeamInfoStore } from '@/stores';
 import { CopyIcon } from '@/components/icons';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
@@ -38,11 +37,8 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
     `/api/team/${team_id}/lark/app`,
     (_url, { arg }: { arg: Lark.Config }) => installApp(team_id, 'lark', arg),
   );
-  const { data: teamInfoData } = useSwr(team_id ? `/api/team/${team_id}` : null, () =>
-    getTeamInfo(team_id),
-  );
 
-  const teamInfo = teamInfoData?.data;
+  const teamInfo = useTeamInfoStore.use.teamInfo();
 
   const steps = [
     {
