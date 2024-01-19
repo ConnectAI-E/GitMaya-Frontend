@@ -48,7 +48,7 @@ export const WorkSpaceInstallation = () => {
               <button className="transition duration-500 relative leading-none flex items-center justify-center text-white font-medium rounded-md py-2.5 text-center px-4 w-full max-w-[300px]  h-14 text-base bg-gray-500 cursor-not-allowed">
                 <div className="flex gap-2 md:gap-4 margin-auto">
                   <SlackIcon size={30} />
-                  <span className="m-auto">Add to Slack</span>
+                  <span className="m-auto">Add to Lark</span>
                 </div>
               </button>
             </div>

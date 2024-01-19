@@ -130,7 +130,7 @@ const Login = () => {
                 </div>
               </div>
               {/* <p className="text-md w-full">
-                · Not a developer? Log in with your team's Slack workspace
+                · Not a developer? Log in with your team's Lark workspace
                 <span className="text-gray-400 font-light">(in view-only mode)</span>.
               </p>
               <button
@@ -138,7 +138,7 @@ const Login = () => {
                 className="text-black bg-white font-bold rounded-lg text-base px-5 py-2.5 text-center inline-flex items-center dark:hover:bg-white/90 me-2 mb-2 w-64 justify-center"
               >
                 <SlackIcon className="me-2" size={20} />
-                Sign in with Slack
+                Sign in with Lark
               </button> */}
             </div>
           </div>

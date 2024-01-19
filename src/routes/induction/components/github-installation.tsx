@@ -4,6 +4,7 @@ import { useOauthDialog } from '@/hooks';
 import useSWRMutation from 'swr/mutation';
 import { switchTeam } from '@/api';
 import { useAccountStore } from '@/stores';
+import { toast } from 'sonner';
 
 export const GithubInstallation = ({
   setStep,
@@ -31,6 +32,10 @@ export const GithubInstallation = ({
     event: 'installation',
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     callback: async (data: any) => {
+      if (data?.app_type === 'User') {
+        toast.error('Installation is not allowed on personal repositories.');
+        return;
+      }
       await trigger({
         current_team: data?.team_id,
       });

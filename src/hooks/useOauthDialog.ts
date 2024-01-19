@@ -21,7 +21,7 @@ export const useOauthDialog = ({
           dialog.current.close();
         }
         callback?.(e.data);
-        console.log('Dogtiti ~ e:', e);
+        console.log('Oauth message ~ e:', e);
         window.removeEventListener('message', eventListener);
       }
     },

@@ -110,7 +110,7 @@ const Repo = () => {
             )}
           >
             {repo.users?.map((user) => (
-              <Tooltip content={user.name}>
+              <Tooltip content={user.name} key={user.id}>
                 <Avatar src={user.avatar} name={user.name} />
               </Tooltip>
             ))}
@@ -198,12 +198,12 @@ const Repo = () => {
                   );
                 }}
               </TableHeader>
-              <TableBody items={teamRepos}>
-                {(item) => (
+              <TableBody>
+                {teamRepos.map((item) => (
                   <TableRow key={item.id}>
                     {(columnKey) => <TableCell>{renderCell(item, columnKey as string)}</TableCell>}
                   </TableRow>
-                )}
+                ))}
               </TableBody>
             </Table>
           )}

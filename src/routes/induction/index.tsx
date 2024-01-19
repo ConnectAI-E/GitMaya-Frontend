@@ -32,11 +32,11 @@ const stepHeaders: Record<number, JSX.Element> = {
     <HeaderContent title="Connect to your code repository">
       <p className="text-md text-black-light-light max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
         Choose the code repository that your team uses. Follow the installation process so that
-        Pullpo can connect and keep track of your development metrics.
+        GitMaya can connect and keep track of your development metrics.
       </p>
       <p className="text-md text-black-light-light max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-        To get you started, Pullpo will process data from the last three months. This can take a few
-        minutes depending on the size of your organization.
+        To get you started, GitMaya will process data from the last three months. This can take a
+        few minutes depending on the size of your organization.
       </p>
     </HeaderContent>
   ),
@@ -44,11 +44,11 @@ const stepHeaders: Record<number, JSX.Element> = {
     <HeaderContent title="Connect to your code repository">
       <p className="text-md text-black-light-light max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
         Choose the code repository that your team uses. Follow the installation process so that
-        Pullpo can connect and keep track of your development metrics.
+        GitMaya can connect and keep track of your development metrics.
       </p>
       <p className="text-md text-black-light-light max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-        To get you started, Pullpo will process data from the last three months. This can take a few
-        minutes depending on the size of your organization.
+        To get you started, GitMaya will process data from the last three months. This can take a
+        few minutes depending on the size of your organization.
       </p>
     </HeaderContent>
   ),

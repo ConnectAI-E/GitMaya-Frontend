@@ -7,7 +7,7 @@ const Indicators = () => {
         <div className="flex-center">
           <h1 className="text-3xl font-bold text-white mr-5">Engineering indicators.</h1>
           <a
-            href="mailto:marco@pullpo.io"
+            href="https://gitmaya.com/"
             className="rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold leading-6 text-primary ring-1 ring-inset ring-primary/20"
           >
             <div className="flex items-center justify-center">

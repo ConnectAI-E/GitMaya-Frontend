@@ -71,7 +71,7 @@ export const StepGuide = ({
     },
     {
       title: 'Add your code repository',
-      description: 'Pullpo connects to GitHub.',
+      description: 'GitMaya connects to GitHub.',
     },
     {
       title: 'Add your Lark workspace',
