@@ -56,9 +56,14 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
   const app_id = teamInfo?.im_application?.app_id ?? getValues('app_id');
   const name = teamInfo?.team?.name || 'GitMaya';
 
+  const width = 360;
+  const height = 360;
+  const left = screen.width / 2 - width / 2;
+  const top = screen.height / 2 - height / 2;
   const handleOneClickDeploy = useOauthDialog({
     url: `/api/team/${team_id}/lark/app?app_id=${app_id}&name=${name}`,
     event: 'installation',
+    option: `left=${left},top=${top},width=${width},height=${height}`,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     callback: async (data: any) => {
       console.log('data', data);
