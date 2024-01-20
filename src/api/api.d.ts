@@ -53,7 +53,7 @@ declare namespace Github {
   interface Team {
     created: string;
     description: string | null;
-    extra: Record<string, unknown>;
+    extra: User['extra'];
     id: string;
     modified: string;
     name: string;
