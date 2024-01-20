@@ -1,6 +1,8 @@
 import { useRef, useEffect, useCallback } from 'react';
 import { isEmpty } from 'lodash-es';
 
+const oauthHost = import.meta.env.VITE_OAUTH_HOST;
+
 export const useOauthDialog = ({
   url,
   option = 'left=500,top=300,width=1024,height=800',
@@ -13,6 +15,7 @@ export const useOauthDialog = ({
   callback: (data: unknown) => void;
 }) => {
   const dialog = useRef<Window | null>();
+  const _url = oauthHost + url;
 
   const eventListener = useCallback(
     (e: MessageEvent) => {
@@ -37,6 +40,6 @@ export const useOauthDialog = ({
   }, [eventListener]);
 
   return () => {
-    dialog.current = window.open(url, '', option);
+    dialog.current = window.open(_url, '', option);
   };
 };
