@@ -1,5 +1,6 @@
 import axios from 'axios';
 import NProgress from 'nprogress';
+import { CustomAxiosInstance } from '@/types/axios';
 
 NProgress.configure({ showSpinner: false });
 
@@ -34,7 +35,7 @@ const handleRequest = (activeRequestsChange: number) => {
 
 const request = axios.create({
   withCredentials: true,
-});
+}) as CustomAxiosInstance;
 
 request.interceptors.request.use((config) => {
   if (activeRequests === 0) {
@@ -47,7 +48,6 @@ request.interceptors.request.use((config) => {
 request.interceptors.response.use(
   (response) => {
     handleRequest(-1);
-
     return response.data;
   },
   (error) => {

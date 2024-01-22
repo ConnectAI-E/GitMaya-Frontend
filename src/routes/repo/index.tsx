@@ -17,8 +17,9 @@ import {
   DropdownMenu,
   DropdownItem,
   Button,
+  Pagination,
 } from '@nextui-org/react';
-import { useCallback } from 'react';
+import { useCallback, useState, useMemo } from 'react';
 import { getRepos, createChat } from '@/api';
 import useSwr from 'swr';
 import useSWRMutation from 'swr/mutation';
@@ -38,7 +39,10 @@ const columns = [
   { name: 'Actions', uid: 'actions' },
 ];
 
+const size = 10;
+
 const Repo = () => {
+  const [page, setPage] = useState(1);
   const account = useAccountStore.use.account();
 
   const team_id = account?.current_team as string;
@@ -57,11 +61,16 @@ const Repo = () => {
     ) => createChat(team_id, arg.repo_id),
   );
 
-  const { data, mutate, isLoading } = useSwr(team_id ? `/api/team/${team_id}/repo` : null, () =>
-    getRepos(team_id, { size: 999, page: 1 }),
+  const { data, mutate, isLoading } = useSwr(
+    team_id ? `/api/team/${team_id}/repo?page=${page}&size=${size}` : null,
+    () => getRepos(team_id, { size, page }),
   );
 
   const teamRepos = data?.data || [];
+
+  const total = useMemo(() => {
+    return data?.total ? Math.ceil(data.total / size) : 0;
+  }, [data?.total]);
 
   const handleCreateChat = async (repo_id: string) => {
     try {
@@ -183,7 +192,23 @@ const Repo = () => {
           {isLoading ? (
             <Spinner label="Loading..." color="warning" className="absolute inset-0" />
           ) : (
-            <Table>
+            <Table
+              bottomContent={
+                total > 1 ? (
+                  <div className="flex w-full justify-center">
+                    <Pagination
+                      isCompact
+                      showControls
+                      showShadow
+                      color="default"
+                      page={page}
+                      total={total}
+                      onChange={(page) => setPage(page)}
+                    />
+                  </div>
+                ) : null
+              }
+            >
               <TableHeader columns={columns}>
                 {(column) => {
                   return (

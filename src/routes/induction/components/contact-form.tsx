@@ -27,9 +27,9 @@ export const ContactForm = ({
 
   const { control, handleSubmit } = useForm({
     defaultValues: {
-      first_name: account?.user.name || '',
+      first_name: account?.user?.name || '',
       last_name: '',
-      email: account?.user.email || '',
+      email: account?.user?.email || '',
       role: 'Developer',
       newsletter: false,
     },
