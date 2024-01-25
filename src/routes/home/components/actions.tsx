@@ -1,7 +1,9 @@
 import { GithubIcon } from '@/components/icons';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export const Actions: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <div className="text-center">
       <div className="cta-container inline-flex justify-center gap-3.5">
@@ -11,7 +13,7 @@ export const Actions: React.FC = () => {
             className="inline-flex h-full w-fit items-center gap-2 rounded-xl px-4 py-2 transition-all duration-300 bg-neutral-900 text-white group-hover:bg-black cursor-pointer"
           >
             <GithubIcon className="h-4 w-4" />
-            Try with your github
+            {t('Try with your github')}
           </Link>
         </div>
       </div>

@@ -5,6 +5,7 @@ import {
   DropdownMenu,
   Avatar as NextAvatar,
 } from '@nextui-org/react';
+import { useTranslation } from 'react-i18next';
 
 interface AvatarProps {
   name: string;
@@ -13,6 +14,7 @@ interface AvatarProps {
 }
 
 export const Avatar = ({ email, name, avatarUrl }: AvatarProps) => {
+  const { t } = useTranslation();
   return (
     <Dropdown placement="bottom-end">
       <DropdownTrigger>
@@ -32,7 +34,7 @@ export const Avatar = ({ email, name, avatarUrl }: AvatarProps) => {
           <p className="font-semibold">{email}</p>
         </DropdownItem>
         <DropdownItem key="logout" color="danger">
-          Log Out
+          {t('Log Out')}
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>

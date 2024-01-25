@@ -3,8 +3,10 @@ import { Footer } from '@/layout/footer';
 import { useOauthDialog } from '@/hooks';
 import { useNavigate } from 'react-router-dom';
 import { useAccountStore } from '@/stores';
+import { useTranslation } from 'react-i18next';
 
 const Login = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const updateAccount = useAccountStore.use.updateAccount();
 
@@ -79,11 +81,11 @@ const Login = () => {
               <h1 className="text-black-light-light text-3xl font-bold">
                 <span> Welcome to </span>
                 <span className="text-maya font-extrabold">GitMaya</span>
-                <span>, let's get started!</span>
+                <span>{t(", let's get started!")}</span>
               </h1>
               <div className="flex flex-col text-left w-full gap-y-6 items-center mt-6">
                 <p className="text-black-light-light text-md w-full text-center">
-                  · Sign in with your team's repository
+                  · {t("Sign in with your team's repository")}
                   <span className="text-gray-400 font-light">(preferred)</span>.
                 </p>
                 <div className="flex flex-col lg:flex-row w-full gap-4 align-top content-end justify-center">
@@ -94,7 +96,7 @@ const Login = () => {
                       className="text-black bg-white font-bold rounded-lg text-base px-5 py-2.5 text-center inline-flex items-center dark:hover:bg-white/90 me-2 mb-2 w-64 justify-center"
                     >
                       <GithubIcon className="me-2" size={20} />
-                      Sign in with Github
+                      {t('Sign in with Github')}
                     </button>
                   </div>
                   {/* <div className="flex flex-col items-center">

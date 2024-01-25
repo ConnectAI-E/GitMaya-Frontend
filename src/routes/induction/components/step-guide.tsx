@@ -1,5 +1,6 @@
 import type { Dispatch, SetStateAction } from 'react';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 type StepProps = {
   title: string;
@@ -64,18 +65,19 @@ export const StepGuide = ({
   step: number;
   setStep: Dispatch<SetStateAction<number>>;
 }) => {
+  const { t } = useTranslation();
   const steps: StepProps[] = [
     {
-      title: 'Contact details',
-      description: 'How can we communicate with you?',
+      title: t('Contact details'),
+      description: t('How can we communicate with you?'),
     },
     {
-      title: 'Add your code repository',
-      description: 'GitMaya connects to GitHub.',
+      title: t('Add your code repository'),
+      description: t('GitMaya connects to GitHub.'),
     },
     {
-      title: 'Add your Lark workspace',
-      description: 'Enable developer feedback and PR - Channels.',
+      title: t('Add your Lark workspace'),
+      description: t('Enable developer feedback and PR - Channels.'),
     },
   ];
 

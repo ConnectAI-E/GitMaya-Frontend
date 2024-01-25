@@ -3,6 +3,7 @@ import { ContactForm, StepGuide, GithubInstallation, WorkSpaceInstallation } fro
 import { useEffect, useState } from 'react';
 import { HeaderContent } from '@/layout/app';
 import { useTeamInfoStore } from '@/stores';
+import { useTranslation } from 'react-i18next';
 
 type StepComponentType = React.FC<{
   step: number;
@@ -15,50 +16,11 @@ const stepComponents: Record<number, StepComponentType> = {
   2: WorkSpaceInstallation,
 };
 
-const stepHeaders: Record<number, JSX.Element> = {
-  0: (
-    <HeaderContent title="Let's meet each other! 👋">
-      <p className="text-md text-black-light-light max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto mt-6">
-        We would like to be able to reach out to you via email to better understand the needs of
-        your team and to provide taylored assistance if needed.
-      </p>
-      <p className="text-md text-black-light-light max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto mt-6">
-        If you require help or want to provide feedback to GitMaya, you can also contact us at:
-        hello@gitmaya.com.
-      </p>
-    </HeaderContent>
-  ),
-  1: (
-    <HeaderContent title="Connect to your code repository">
-      <p className="text-md text-black-light-light max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-        Choose the code repository that your team uses. Follow the installation process so that
-        GitMaya can connect and keep track of your development metrics.
-      </p>
-      <p className="text-md text-black-light-light max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-        To get you started, GitMaya will process data from the last three months. This can take a
-        few minutes depending on the size of your organization.
-      </p>
-    </HeaderContent>
-  ),
-  2: (
-    <HeaderContent title="Connect to your code repository">
-      <p className="text-md text-black-light-light max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-        Choose the code repository that your team uses. Follow the installation process so that
-        GitMaya can connect and keep track of your development metrics.
-      </p>
-      <p className="text-md text-black-light-light max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-        To get you started, GitMaya will process data from the last three months. This can take a
-        few minutes depending on the size of your organization.
-      </p>
-    </HeaderContent>
-  ),
-};
-
 const Induction = () => {
+  const { t } = useTranslation();
   const teamInfo = useTeamInfoStore.use.teamInfo();
   const [step, setStep] = useState(0);
   const StepComponent = stepComponents[step];
-  const StepHeader = stepHeaders[step];
   useEffect(() => {
     if (teamInfo?.code_application && !teamInfo.im_application) {
       setStep(2);
@@ -67,7 +29,16 @@ const Induction = () => {
 
   return (
     <div className="bg-black-light-light flex-grow flex flex-col">
-      <div className="bg-black">{StepHeader}</div>
+      <div className="bg-black">
+        <HeaderContent title={t(`stepHeaders.${step}.title`)}>
+          <p className="text-md text-black-light-light max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto mt-6">
+            {t(`stepHeaders.${step}.content1`)}
+          </p>
+          <p className="text-md text-black-light-light max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto mt-6">
+            {t(`stepHeaders.${step}.content2`)}
+          </p>
+        </HeaderContent>
+      </div>
       <main className="container max-w-7xl mx-auto px-4 sm:px-6 flex-grow bg-white">
         <div className="grow flex max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <StepGuide step={step} setStep={setStep} />

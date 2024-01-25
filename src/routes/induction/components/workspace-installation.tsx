@@ -1,9 +1,10 @@
 import { LarkWhiteIcon } from '@/components/icons';
 import { LarkInstallation, type LarkInstallationRef } from './lark-installation';
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 export const WorkSpaceInstallation = () => {
   const larkInstallationRef = useRef<LarkInstallationRef | null>(null);
-
+  const { t } = useTranslation();
   const installLark = () => {
     larkInstallationRef.current?.onOpen();
   };
@@ -36,7 +37,7 @@ export const WorkSpaceInstallation = () => {
               >
                 <div className="flex gap-2 md:gap-4 margin-auto">
                   <LarkWhiteIcon size={30} />
-                  <span className="m-auto">Add to Lark</span>
+                  <span className="m-auto">{t('Add to Lark')}</span>
                 </div>
               </button>
             </div>
