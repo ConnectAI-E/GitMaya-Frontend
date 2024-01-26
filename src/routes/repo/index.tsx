@@ -25,6 +25,7 @@ import useSwr from 'swr';
 import useSWRMutation from 'swr/mutation';
 import { useAccountStore } from '@/stores';
 import { RefreshIcon } from '@/components/icons';
+import { useTranslation } from 'react-i18next';
 
 const columns = [
   {
@@ -42,6 +43,7 @@ const columns = [
 const size = 10;
 
 const Repo = () => {
+  const { t } = useTranslation();
   const [page, setPage] = useState(1);
   const account = useAccountStore.use.account();
 
@@ -132,7 +134,7 @@ const Repo = () => {
           <Dropdown>
             <DropdownTrigger>
               <Button className="bg-maya text-white" variant="bordered">
-                Actions
+                {t('Actions')}
               </Button>
             </DropdownTrigger>
             <DropdownMenu aria-label="Example with disabled actions" disabledKeys={['frozen']}>
@@ -166,7 +168,7 @@ const Repo = () => {
       <div className="bg-black-light-light flex-grow flex flex-col">
         <Hero>
           <div className="flex justify-between items-center mb-5">
-            <h1 className="text-3xl font-bold text-white mr-5">Repo Manager</h1>
+            <h1 className="text-3xl font-bold text-white mr-5">{t('Repo Manager')}</h1>
           </div>
           <div
             className="flex items-center p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300"
@@ -181,10 +183,12 @@ const Repo = () => {
             >
               <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
             </svg>
-            <span className="sr-only">Info</span>
+            <span className="sr-only">{t('Info')}</span>
             <div>
-              <span className="font-medium">Configuration needed!</span> Please, associate the
-              GitHub username to the respective Lark handle of each of your team members.
+              <span className="font-medium">{t('Configuration needed!')}</span>{' '}
+              {t(
+                'Please, associate the GitHub username to the respective Lark handle of each of your team members.',
+              )}
             </div>
           </div>
         </Hero>

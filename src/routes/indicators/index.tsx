@@ -1,17 +1,19 @@
 import { Hero } from '@/layout/app';
+import { useTranslation } from 'react-i18next';
 
 const Indicators = () => {
+  const { t } = useTranslation();
   return (
     <div className="bg-black-light-light flex-grow flex flex-col">
       <Hero>
         <div className="flex-center">
-          <h1 className="text-3xl font-bold text-white mr-5">Engineering indicators.</h1>
+          <h1 className="text-3xl font-bold text-white mr-5">{t('Engineering indicators.')}</h1>
           <a
             href="https://gitmaya.com/"
             className="rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold leading-6 text-primary ring-1 ring-inset ring-primary/20"
           >
             <div className="flex items-center justify-center">
-              <span>Beta. Tell us what you think</span>
+              <span>{t('Beta.Tell us what you think')}</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
@@ -30,7 +32,7 @@ const Indicators = () => {
         </div>
       </Hero>
       <main className="container -mt-40 max-w-7xl mx-auto px-4 sm:px-6 flex-grow bg-white">
-        Indicators
+        {t('Indicators')}
       </main>
     </div>
   );

@@ -44,6 +44,7 @@ import LarkQR from '@/assets/lark-group-QR.jpg';
 import { isNull } from 'lodash-es';
 
 export const Navbar = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const navigate = useNavigate();
@@ -85,13 +86,11 @@ export const Navbar = () => {
             value: item.id,
           }))
           .concat({
-            label: 'Create a team',
+            label: t('Create a new team'),
             value: 'create',
           }),
-      [data?.data],
+      [data?.data, t],
     ) || [];
-
-  const { t } = useTranslation();
 
   const selectTeam = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const team_id = e.target.value;
@@ -143,7 +142,7 @@ export const Navbar = () => {
                   color="foreground"
                   href={item.href}
                 >
-                  {item.label}
+                  {t(item.label)}
                 </Link>
               </NavbarItem>
             ))}
@@ -152,14 +151,14 @@ export const Navbar = () => {
         {shouldShowOnboarding && (
           <NavbarContent className="basis-1/5 sm:basis-full" justify="center">
             <Button onPress={onboarding} variant="bordered">
-              Complete your team's onboarding...
+              {t("Complete your team's onboarding...")}
             </Button>
           </NavbarContent>
         )}
         <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end">
           <NavbarItem className="hidden sm:flex">
             <Select
-              label="Select a team"
+              label={t('Select a team')}
               className="max-w-xs min-w-48"
               size="sm"
               onChange={selectTeam}
@@ -230,7 +229,7 @@ export const Navbar = () => {
                   href="#"
                   size="lg"
                 >
-                  {item.label}
+                  {t(item.label)}
                 </Link>
               </NavbarMenuItem>
             ))}
@@ -249,7 +248,7 @@ export const Navbar = () => {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                Complete your team's onboarding
+                {t("Complete your team's onboarding")}
               </ModalHeader>
               <ModalBody>
                 <div className="mx-auto w-full flex items-center justify-center rounded-full">
@@ -263,22 +262,25 @@ export const Navbar = () => {
                 </div>
                 {!account?.current_team ? (
                   <p className="text-sm text-gray-500 text-center">
-                    In order for Gitmaya to work properly,we need to add it to your code repository.
-                    Learn about our data privacy policy, permissions and security measures here.
+                    {t(
+                      'In order for Gitmaya to work properly,we need to add it to your code repository.Learn about our data privacy policy, permissions and security measures here.',
+                    )}
                   </p>
                 ) : (
                   <p className="text-sm text-gray-500 text-center">
-                    In order for Gitmaya to work properly, we need to add
-                    <span className="text-maya"> Lark </span> to your team. Learn about our data
-                    privacy policy, permissions and security measures here.
+                    {t('In order for Gitmaya to work properly, we need to add')}
+                    <span className="text-maya"> Lark </span>{' '}
+                    {t(
+                      'to your team. Learn about our data privacy policy, permissions and security measures here.',
+                    )}
                   </p>
                 )}
 
                 <Button color="danger" onPress={onboarding}>
-                  Continue onboarding
+                  {t('Continue onboarding')}
                 </Button>
                 <Button color="danger" variant="light" onPress={onClose}>
-                  Keep exploring (remind me next time)
+                  {t('Keep exploring (remind me next time)')}
                 </Button>
               </ModalBody>
             </>

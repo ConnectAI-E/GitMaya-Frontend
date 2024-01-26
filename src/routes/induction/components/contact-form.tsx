@@ -4,6 +4,7 @@ import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import useSWRMutation from 'swr/mutation';
 import { updateTeamContact } from '@/api';
 import { toast } from 'sonner';
+import { useTranslation } from 'react-i18next';
 
 interface IFormInput {
   first_name: string;
@@ -19,6 +20,7 @@ export const ContactForm = ({
   step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
 }) => {
+  const { t } = useTranslation();
   const account = useAccountStore.use.account();
   const { trigger, isMutating } = useSWRMutation(
     '/api/team/contact',
@@ -52,8 +54,8 @@ export const ContactForm = ({
             render={({ field }) => (
               <Input
                 isRequired
-                label="First name"
-                placeholder="Enter your first name "
+                label={t('First name')}
+                placeholder={t('Enter your first name')}
                 {...field}
               />
             )}
@@ -62,7 +64,7 @@ export const ContactForm = ({
             name="last_name"
             control={control}
             render={({ field }) => (
-              <Input label="Last name" placeholder="Enter your last name " {...field} />
+              <Input label={t('Last name')} placeholder={t('Enter your last name')} {...field} />
             )}
           />
         </div>
@@ -74,8 +76,8 @@ export const ContactForm = ({
             render={({ field }) => (
               <Input
                 isRequired
-                label="Email address"
-                placeholder="Enter your email"
+                label={t('Email address')}
+                placeholder={t('Enter your email')}
                 type="email"
                 {...field}
               />
@@ -92,13 +94,13 @@ export const ContactForm = ({
                 {...field}
                 defaultSelectedKeys={['Developer']}
                 isRequired
-                label="Role"
-                placeholder="Select an role"
+                label={t('Role')}
+                placeholder={t('Select a role')}
                 selectedKeys={[field.value]}
               >
                 {Roles.map((role) => (
                   <SelectItem key={role.value} value={role.value}>
-                    {role.label}
+                    {t(role.label)}
                   </SelectItem>
                 ))}
               </Select>
@@ -116,10 +118,13 @@ export const ContactForm = ({
                 isSelected={value}
                 color="default"
               >
-                <span className="text-black">I'd like to subscribe to the monthly newsletter</span>
+                <span className="text-black">
+                  {t("I'd like to subscribe to the monthly newsletter")}
+                </span>
                 <p className="text-gray-500">
-                  Subscribe to our monthly newsletter to be the first one to hear about product
-                  updates. No spam, we promise.
+                  {t(
+                    'Subscribe to our monthly newsletter to be the first one to hear about product updates. No spam, we promise.',
+                  )}
                 </p>
               </Checkbox>
             )}
@@ -136,7 +141,7 @@ export const ContactForm = ({
                 className="transition duration-500 relative leading-none flex items-center justify-center text-white rounded-md py-2.5 text-center px-4 w-full max-w-[300px] bg-maya font-bold h-9 text-sm"
               >
                 <div className="flex gap-2 md:gap-4 margin-auto">
-                  <span className="m-auto">Save</span>
+                  <span className="m-auto">{t('Save')}</span>
                 </div>
               </Button>
             </div>
@@ -145,7 +150,7 @@ export const ContactForm = ({
         <div className="ml-2">
           <button className="text-white bg-maya p-[3px] rounded-lg w-full max-w-[300px] font-bold h-9 text-sm">
             <div className="bg-white text-black hover:bg-gray-200 flex w-full h-full items-center justify-center  rounded-md px-4">
-              <div>Cancel</div>
+              <div>{t('Cancel')}</div>
             </div>
           </button>
         </div>

@@ -21,6 +21,7 @@ import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
 import { LarkTutior } from './lark-tutior';
 import { useOauthDialog } from '@/hooks';
+import { useTranslation } from 'react-i18next';
 
 export interface LarkInstallationRef {
   isOpen: boolean;
@@ -29,6 +30,7 @@ export interface LarkInstallationRef {
 }
 
 export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) => {
+  const { t } = useTranslation();
   const account = useAccountStore.use.account();
   const team_id = account?.current_team as string;
   const navigate = useNavigate();
@@ -86,7 +88,7 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
   const StepOne = () => {
     return (
       <div>
-        <h1 className="text-2xl font-bold mb-4">Create Robot</h1>
+        <h1 className="text-2xl font-bold mb-4">{t('Create Robot')}</h1>
         <div className="flex flex-col gap-4">
           <Button
             className={clsx('p-4 text-left connectai-auto-deploy-lark', {
@@ -97,7 +99,7 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
               setAction('auto');
             }}
           >
-            One-click Deployment
+            {t('One-click Deployment')}
           </Button>
           <Button
             className={clsx('p-4 text-left', {
@@ -105,7 +107,7 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
             })}
             onClick={() => setAction('manual')}
           >
-            Go to the developer platform yourself and create an application
+            {t('Go to the developer platform yourself and create an application')}
           </Button>
         </div>
       </div>
@@ -121,7 +123,12 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
-              <Input isRequired label="NAME" placeholder="Enter your robot name " {...field} />
+              <Input
+                isRequired
+                label={t('NAME')}
+                placeholder={t('Enter your robot name')}
+                {...field}
+              />
             )}
           />
           <Controller
@@ -129,7 +136,12 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
-              <Input isRequired label="APP_ID" placeholder="Enter your app id " {...field} />
+              <Input
+                isRequired
+                label={t('APP_ID')}
+                placeholder={t('Enter your app id')}
+                {...field}
+              />
             )}
           />
         </div>
@@ -141,8 +153,8 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
             render={({ field }) => (
               <Input
                 isRequired
-                label="APP_SECRET"
-                placeholder="Enter your app secret "
+                label={t('APP_SECRET')}
+                placeholder={t('Enter your app secret')}
                 {...field}
               />
             )}
@@ -154,8 +166,8 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
             render={({ field }) => (
               <Input
                 isRequired
-                label="ENCRYPT_KEY"
-                placeholder="Enter your encrypt key "
+                label={t('ENCRYPT_KEY')}
+                placeholder={t('Enter your encrypt key')}
                 {...field}
               />
             )}
@@ -169,8 +181,8 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
             render={({ field }) => (
               <Input
                 isRequired
-                label="VERIFICATION_TOKEN"
-                placeholder="Enter your verification token "
+                label={t('VERIFICATION_TOKEN')}
+                placeholder={t('Enter your verification token')}
                 {...field}
               />
             )}
@@ -249,7 +261,7 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
         {(onClose) => (
           <>
             <ModalHeader className="flex items-center gap-1">
-              <LarkIcon /> <span>Lark Setting</span>
+              <LarkIcon /> <span>{t('Lark Setting')}</span>
             </ModalHeader>
             <ModalBody>
               <div className="flex w-full gap-4">
@@ -289,18 +301,18 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
             </ModalBody>
             <ModalFooter>
               <Button color="danger" variant="light" onPress={onClose}>
-                Cancle
+                {t('Cancel')}
               </Button>
 
               {step === 0 && (
                 <Button color="primary" onPress={setupRobot} className="bg-maya">
-                  Next
+                  {t('Next')}
                 </Button>
               )}
               {step === 1 && (
                 <>
                   <Button variant="light" onPress={prevStep}>
-                    Prev
+                    {t('Prev')}
                   </Button>
                   <Button
                     disabled={isMutating}
@@ -308,14 +320,14 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
                     className="bg-maya"
                     onClick={handleSubmit(save)}
                   >
-                    Save
+                    {t('Save')}
                   </Button>
                   {
                     // TODO: remove this
                   }
                   {import.meta.env.DEV && (
                     <Button color="primary" onPress={nextStep} className="bg-maya">
-                      Next
+                      {t('Next')}
                     </Button>
                   )}
                 </>
@@ -323,10 +335,10 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
               {step === 2 && (
                 <>
                   <Button variant="light" onPress={prevStep}>
-                    Prev
+                    {t('Prev')}
                   </Button>
                   <Button color="primary" className="bg-maya" onPress={finishSetting}>
-                    Configuration Completed
+                    {t('Configuration Completed')}
                   </Button>
                 </>
               )}

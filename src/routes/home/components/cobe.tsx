@@ -3,6 +3,7 @@ import type { SVGProps } from 'react';
 import { useEffect, useRef } from 'react';
 import createGlobe from 'cobe';
 import { useSpring } from 'react-spring';
+import { useTranslation } from 'react-i18next';
 
 import {
   SlackWhiteIcon,
@@ -35,6 +36,7 @@ export const Cobe = () => {
       precision: 0.001,
     },
   }));
+  const { t } = useTranslation();
 
   useEffect(() => {
     let phi = 0;
@@ -113,7 +115,7 @@ export const Cobe = () => {
               className={'text-xl group-hover:opacity-85 md:text-4xl '}
               style={{ paddingLeft: '10px' }}
             >
-              Make Git Flow In Chat
+              {t('Make Git Flow In Chat')}
             </span>
           </div>
         </div>

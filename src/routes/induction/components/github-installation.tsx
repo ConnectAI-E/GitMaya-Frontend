@@ -5,6 +5,7 @@ import useSWRMutation from 'swr/mutation';
 import { switchTeam } from '@/api';
 import { useAccountStore } from '@/stores';
 import { toast } from 'sonner';
+import { useTranslation } from 'react-i18next';
 
 export const GithubInstallation = ({
   setStep,
@@ -12,6 +13,7 @@ export const GithubInstallation = ({
   step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
 }) => {
+  const { t } = useTranslation();
   const updateAccount = useAccountStore.use.updateAccount();
 
   const { trigger } = useSWRMutation(
@@ -68,7 +70,7 @@ export const GithubInstallation = ({
               <button className="transition duration-500 relative leading-none flex items-center justify-center text-white font-medium rounded-md py-2.5 text-center px-4 w-full max-w-[300px] bg-maya  h-14 text-base">
                 <div className="flex gap-2 md:gap-4 margin-auto">
                   <GithubIcon size={30} />
-                  <span className="m-auto">Add to GitHub</span>
+                  <span className="m-auto">{t('Add to GitHub')}</span>
                 </div>
               </button>
             </div>
@@ -87,7 +89,7 @@ export const GithubInstallation = ({
               <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
             </svg>
             <span className="sr-only">Info</span>
-            <div>Only supports organization repositories</div>
+            <div>{t('Only supports organization repositories')}</div>
           </div>
         </div>
       </div>

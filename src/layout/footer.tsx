@@ -4,8 +4,10 @@ import { Logo, LarkWhiteIcon } from '@/components/icons';
 import { Link } from 'react-router-dom';
 import LarkQR from '@/assets/lark-group-QR.jpg';
 import { Tooltip, Image } from '@nextui-org/react';
+import { useTranslation } from 'react-i18next';
 
 export const Footer = ({ className }: { className?: string }) => {
+  const { t } = useTranslation();
   const [showCookie, setShowCookie] = useLocalStorageState(`showCookie`, {
     serializer: JSON.stringify,
     deserializer: JSON.parse,
@@ -44,7 +46,7 @@ export const Footer = ({ className }: { className?: string }) => {
       >
         <div className="max-w-7xl mx-auto px-5 py-5 sm:px-6 flex items-center justify-center h-full">
           <div className="flex items-center justify-center">
-            We use cookies in this website to give you the best experience on our site.
+            {t('We use cookies in this website to give you the best experience on our site.')}
             {/*To find out more, read our*/}
             {/*<a href="/" target="_blank" rel="noopener noreferrer" className="text-blue-400">*/}
             {/*  <span> privacy policy </span>*/}
