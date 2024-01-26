@@ -100,5 +100,10 @@
   "Robot - Configure Message Card Request Address": "Robot - Configure Message Card Request Address",
   "Add Event Subscription - Messages and Group Chats - Message Read": "Add Event Subscription - Messages and Group Chats - Message Read",
   "Add Event Subscription - Messages and Group Chats - Receive Messages": "Add Event Subscription - Messages and Group Chats - Receive Messages",
-  "Add to Lark": "Add to Lark"
+  "Add to Lark": "Add to Lark",
+  "Create a new team": "Create a new team",
+  "Select a team": "Select a team",
+  "People": "People",
+  "Repo": "Repo",
+  "Logout": "Logout"
 }

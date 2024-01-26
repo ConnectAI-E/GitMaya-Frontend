@@ -98,5 +98,10 @@
   "Robot - Configure Message Card Request Address": "机器人 - 配置消息卡片请求地址",
   "Add Event Subscription - Messages and Group Chats - Message Read": "添加事件订阅 - 消息和群聊 - 读取消息",
   "Add Event Subscription - Messages and Group Chats - Receive Messages": "添加事件订阅 - 消息和群聊 - 接收消息",
-  "Add to Lark": "添加到 Lark"
+  "Add to Lark": "添加到 Lark",
+  "Create a new team": "创建一个新团队",
+  "Select a team": "选择一个团队",
+  "People": "成员",
+  "Repo": "仓库",
+  "Logout": "登出"
 }
