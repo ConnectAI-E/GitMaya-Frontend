@@ -15,7 +15,13 @@ export const useOauthDialog = ({
   callback: (data: unknown) => void;
 }) => {
   const dialog = useRef<Window | null>();
-  const _url = oauthHost + url;
+  let _url = '';
+  if (oauthHost.length > 0) {
+    _url = oauthHost + url;
+  }
+  else {
+    _url = window.location.origin + url;
+  }
 
   const eventListener = useCallback(
     (e: MessageEvent) => {
