@@ -1,7 +1,7 @@
 import { useRef, useEffect, useCallback } from 'react';
 import { isEmpty } from 'lodash-es';
 
-const oauthHost = import.meta.env.VITE_OAUTH_HOST;
+const oauthHost = import.meta.env.VITE_OAUTH_HOST ?? window.location.origin;
 
 export const useOauthDialog = ({
   url,
