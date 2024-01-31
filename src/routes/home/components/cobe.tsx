@@ -13,6 +13,8 @@ import {
   YoutubeIcon,
 } from '@/components/icons';
 
+import { siteConfig } from '@/config';
+
 export const TextLogo = (props: SVGProps<SVGSVGElement>) => (
   <svg fill="none" viewBox="0 0 423 120" xmlns="http://www.w3.org/2000/svg" {...props}>
     <path
@@ -76,14 +78,17 @@ export const Cobe = () => {
   }, []);
 
   return (
-    <div
+    <a
       style={{
         width: '100%',
         maxWidth: 700,
         aspectRatio: 1,
         margin: 'auto',
         position: 'relative',
+        display: 'block',
       }}
+      href={siteConfig.links.bilibili}
+      target="_blank"
     >
       <div
         className={'group  cursor-pointer'}
@@ -175,6 +180,6 @@ export const Cobe = () => {
           }
         }}
       />
-    </div>
+    </a>
   );
 };

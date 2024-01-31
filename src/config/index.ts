@@ -31,5 +31,6 @@ export const siteConfig = {
     docs: 'https://github.com/ConnectAI-E/GitMaya',
     discord: 'https://github.com/ConnectAI-E/GitMaya',
     sponsor: 'https://github.com/ConnectAI-E/GitMaya',
+    bilibili: 'https://www.bilibili.com/video/BV1se411n7tD/',
   },
 };
