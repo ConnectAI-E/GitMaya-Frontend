@@ -52,3 +52,5 @@ export const updateTeamContact = (data: {
 
 export const getTaskStatus = (team_id: string, task_id: string) =>
   request.get<Lark.TaskStatus>(`/api/team/${team_id}/task/${task_id}`);
+
+export const logout = () => request.get('/api/logout');

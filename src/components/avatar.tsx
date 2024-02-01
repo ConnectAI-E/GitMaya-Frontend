@@ -6,6 +6,8 @@ import {
   Avatar as NextAvatar,
 } from '@nextui-org/react';
 import { useTranslation } from 'react-i18next';
+import { logout } from '@/api';
+import { useAccountStore } from '@/stores';
 
 interface AvatarProps {
   name: string;
@@ -15,6 +17,11 @@ interface AvatarProps {
 
 export const Avatar = ({ email, name, avatarUrl }: AvatarProps) => {
   const { t } = useTranslation();
+  const setAccount = useAccountStore.use.setAccount();
+  const handleLogout = async () => {
+    setAccount({});
+    await logout();
+  };
   return (
     <Dropdown placement="bottom-end">
       <DropdownTrigger>
@@ -33,7 +40,7 @@ export const Avatar = ({ email, name, avatarUrl }: AvatarProps) => {
           <p className="font-semibold">{name}</p>
           <p className="font-semibold">{email}</p>
         </DropdownItem>
-        <DropdownItem key="logout" color="danger">
+        <DropdownItem key="logout" color="danger" onPress={handleLogout}>
           {t('Log Out')}
         </DropdownItem>
       </DropdownMenu>
