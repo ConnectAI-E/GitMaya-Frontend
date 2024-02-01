@@ -63,7 +63,7 @@ export const LarkInstallation = forwardRef<LarkInstallationRef>((_props, ref) =>
   const left = screen.width / 2 - width / 2;
   const top = screen.height / 2 - height / 2;
   const handleOneClickDeploy = useOauthDialog({
-    url: `/api/team/${team_id}/lark/app?app_id=${app_id}&name=GitMaya&desc=GitOps For ${name}&avatar=${teamInfo?.team?.extra?.avatar_url}`,
+    url: `/api/team/${team_id}/lark/app?app_id=${app_id}&name=GitMaya&desc=GitOps For ${name}`,
     event: 'installation',
     option: `left=${left},top=${top},width=${width},height=${height}`,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
