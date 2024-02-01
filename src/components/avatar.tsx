@@ -7,6 +7,7 @@ import {
 } from '@nextui-org/react';
 import { useTranslation } from 'react-i18next';
 import { logout } from '@/api';
+import { useAccountStore } from '@/stores';
 
 interface AvatarProps {
   name: string;
@@ -17,6 +18,7 @@ interface AvatarProps {
 export const Avatar = ({ email, name, avatarUrl }: AvatarProps) => {
   const { t } = useTranslation();
   const handleLogout = async () => {
+    useAccountStore.use.setAccount({});
     await logout();
   };
   return (
