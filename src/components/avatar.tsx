@@ -17,8 +17,9 @@ interface AvatarProps {
 
 export const Avatar = ({ email, name, avatarUrl }: AvatarProps) => {
   const { t } = useTranslation();
+  const setAccount = useAccountStore.use.setAccount();
   const handleLogout = async () => {
-    useAccountStore.use.setAccount({});
+    setAccount({});
     await logout();
   };
   return (
