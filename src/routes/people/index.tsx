@@ -8,9 +8,9 @@ import {
   TableRow,
   TableCell,
   User,
-  Select,
-  SelectItem,
   Spinner,
+  Autocomplete,
+  AutocompleteItem,
 } from '@nextui-org/react';
 import { useCallback, useState, useEffect, useMemo } from 'react';
 import {
@@ -125,17 +125,20 @@ const People = () => {
           );
         case 'lark':
           return (
-            <Select
+            <Autocomplete
               label="Select a user"
               className="max-w-xs"
               size="sm"
-              onChange={(e) => bindMember(e, user)}
-              items={larkUsers}
-              defaultSelectedKeys={[user.im_user?.id]}
-              disallowEmptySelection
+              defaultItems={larkUsers}
+              onSelectionChange={(e) => bindMember(e, user)}
+              defaultSelectedKey={[user.im_user?.id]}
             >
-              {(user) => <SelectItem key={user.value}>{user.label}</SelectItem>}
-            </Select>
+              {(user) => (
+                <AutocompleteItem key={user.value} value={user.value}>
+                  {user.label}
+                </AutocompleteItem>
+              )}
+            </Autocomplete>
           );
 
         default:
