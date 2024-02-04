@@ -22,6 +22,11 @@
       "content2": "Để bắt đầu, GitMaya sẽ xử lý dữ liệu trong ba tháng qua. Việc này có thể mất vài phút tùy thuộc vào kích thước của tổ chức của bạn."
     }
   },
+  "Welcome to": "Chào mừng đến với",
+  "preferred": "Giới thiệu",
+  "Home": "Trang chủ",
+  "GitHub handle": "Người dùng GitHub",
+  "Lark handle": "Người dùng Lark",
   ", let's get started!": ", hãy bắt đầu!",
   "Sign in with your team's repository": "Đăng nhập bằng kho mã nguồn của đội của bạn",
   "Sign in with Github": "Đăng nhập bằng Github",

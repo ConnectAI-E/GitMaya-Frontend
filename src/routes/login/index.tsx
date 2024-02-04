@@ -79,14 +79,14 @@ const Login = () => {
           <div className="p-[1px]  rounded-xl shadow-xl bg-maya">
             <div className="items-center justify-center flex flex-col gap-y-4 p-20 rounded-xl bg-[#1e293b]">
               <h1 className="text-black-light-light text-3xl font-bold">
-                <span> Welcome to </span>
+                <span> {t('Welcome to')} </span>
                 <span className="text-maya font-extrabold">GitMaya</span>
                 <span>{t(", let's get started!")}</span>
               </h1>
               <div className="flex flex-col text-left w-full gap-y-6 items-center mt-6">
                 <p className="text-black-light-light text-md w-full text-center">
                   · {t("Sign in with your team's repository")}
-                  <span className="text-gray-400 font-light">(preferred)</span>.
+                  <span className="text-gray-400 font-light">({t('preferred')})</span>.
                 </p>
                 <div className="flex flex-col lg:flex-row w-full gap-4 align-top content-end justify-center">
                   <div className="flex flex-col items-center ">

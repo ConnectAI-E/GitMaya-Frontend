@@ -56,7 +56,7 @@ export const Navbar = () => {
                 color="foreground"
                 href={item.href}
               >
-                {item.label}
+                {t(item.label)}
               </Link>
             </NavbarItem>
           ))}

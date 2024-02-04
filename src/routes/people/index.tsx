@@ -29,18 +29,6 @@ import clsx from 'clsx';
 import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next';
 
-const columns = [
-  {
-    name: 'GitHub handle',
-    uid: 'github',
-  },
-  {
-    name: 'Lark handle',
-    uid: 'lark',
-  },
-  { name: 'Role', uid: 'role' },
-];
-
 const People = () => {
   const { t } = useTranslation();
   const controls = useAnimation();
@@ -49,6 +37,18 @@ const People = () => {
   const account = useAccountStore.use.account();
 
   const team_id = account?.current_team as string;
+
+  const columns = [
+    {
+      name: t('GitHub handle'),
+      uid: 'github',
+    },
+    {
+      name: t('Lark handle'),
+      uid: 'lark',
+    },
+    { name: t('Role'), uid: 'role' },
+  ];
 
   const { trigger } = useSWRMutation(
     `api/team/${team_id}/member`,

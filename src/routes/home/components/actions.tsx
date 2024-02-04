@@ -23,7 +23,7 @@ export const Actions: React.FC = () => {
         className="text-current opacity-70 text-sm"
         target="_blank"
       >
-        Learn more details →
+        {t('Learn more details')} →
       </a>
     </div>
   );
