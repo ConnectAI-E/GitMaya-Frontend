@@ -1,6 +1,6 @@
 {
   "Make Git Flow In Chat": "Make Git Flow In Chat",
-  "Try with your github": "Try with your github",
+  "Try with your github": "Try with your github org",
   "Learn more details": "Learn more details",
   "Engineering indicators.": "Engineering indicators.",
   "Beta.Tell us what you think": "Beta.Tell us what you think",
@@ -22,6 +22,11 @@
       "content2": "To get you started, GitMaya will process data from the last three months. This can take a few minutes depending on the size of your organization."
     }
   },
+  "Welcome to": "Welcome to",
+  "preferred": "preferred",
+  "Home": "Home",
+  "GitHub handle": "GitHub handle",
+  "Lark handle": "Lark handle",
   ", let's get started!": ", let's get started!",
   "Sign in with your team's repository": "Sign in with your team's repository",
   "Sign in with Github": "Sign in with Github",

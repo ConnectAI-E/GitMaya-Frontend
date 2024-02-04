@@ -1,6 +1,6 @@
 {
-  "Make Git Flow In Chat": "使Git在聊天中流畅",
-  "Try with your github": "尝试使用您的 GitHub",
+  "Make Git Flow In Chat": "聊天即协同",
+  "Try with your github": "立刻为 GitHub 组织安装",
   "Learn more details": "了解更多详情",
   "Engineering indicators.": "工程指标。",
   "stepHeaders": {
@@ -20,15 +20,20 @@
       "content2": "为了让您开始使用，GitMaya 将处理过去三个月的数据。这可能需要一些时间，具体取决于您组织的大小。"
     }
   },
+  "Welcome to": "欢迎加入",
+  "preferred": "推荐",
+  "Home": "首页",
+  "GitHub handle": "GitHub 用户",
+  "Lark handle": "飞书用户",
   ", let's get started!": "，让我们开始吧！",
   "Sign in with your team's repository": "使用您团队的仓库进行登录",
   "Sign in with Github": "使用 Github 进行登录",
-  "My organization": "我的组织",
+  "My organization": "成员匹配",
   "info": "信息",
   "Configuration needed!": "需要配置！",
   "Please, associate the GitHub username to the respective Lark handle of each of your team members.": "请将GitHub用户名与您团队每位成员的相应Lark帐号关联起来。",
   "Actions": "操作",
-  "Repo Manager": "仓库管理器",
+  "Repo Manager": "仓库列表",
   "Info": "信息",
   "We use cookies in this website to give you the best experience on our site.": "我们在这个网站使用cookies，以提供给您最佳的使用体验。",
   "Sign in": "登录",
@@ -101,7 +106,7 @@
   "Add to Lark": "添加到 Lark",
   "Create a new team": "创建一个新团队",
   "Select a team": "选择一个团队",
-  "People": "成员",
-  "Repo": "仓库",
+  "People": "成员匹配",
+  "Repo": "仓库列表",
   "Logout": "登出"
 }
