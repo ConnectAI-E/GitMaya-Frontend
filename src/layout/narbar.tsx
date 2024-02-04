@@ -14,7 +14,7 @@ import { link as linkStyles } from '@nextui-org/theme';
 
 import { siteConfig } from '@/config';
 import clsx from 'clsx';
-import { GithubIcon, Logo, LarkWhiteIcon } from '@/components/icons';
+import { GithubIcon, Logo, LarkWhiteIcon, BoxIcon } from '@/components/icons';
 // import { ThemeSwitch } from '@/components/theme-switch';
 import { I18nSwitch } from '@/components/i18n-switch';
 
@@ -77,6 +77,9 @@ export const Navbar = () => {
               <LarkWhiteIcon className="text-default-500" />
             </span>
           </Tooltip>
+          <Link isExternal href={siteConfig.links.invitation} target="_blank">
+            <BoxIcon className="text-default-500" />
+          </Link>
           {/* <ThemeSwitch /> */}
           <I18nSwitch />
         </NavbarItem>

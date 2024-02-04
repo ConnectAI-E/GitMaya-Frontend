@@ -31,5 +31,7 @@ export const appSiteConfig = {
     docs: 'https://github.com/ConnectAI-E/GitMaya',
     discord: 'https://github.com/ConnectAI-E/GitMaya',
     sponsor: 'https://github.com/ConnectAI-E/GitMaya',
+    invitation:
+      'https://fork-way.feishu.cn/share/base/form/shrcnVMJP4h2BKi9zlnWEh7DOJB?iframeFrom=docx&ccm_open=iframe',
   },
 };

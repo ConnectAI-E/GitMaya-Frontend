@@ -95,8 +95,7 @@ const People = () => {
   const teamMember = useMemo(() => data?.data || [], [data]);
 
   const bindMember = useCallback(
-    async (e: React.ChangeEvent<HTMLSelectElement>, user: Github.TeamMember) => {
-      const { value } = e.target;
+    async (value: string, user: Github.TeamMember) => {
       try {
         await trigger({
           code_user_id: user.code_user.id,
@@ -130,8 +129,8 @@ const People = () => {
               className="max-w-xs"
               size="sm"
               defaultItems={larkUsers}
-              onSelectionChange={(e) => bindMember(e, user)}
-              defaultSelectedKey={[user.im_user?.id]}
+              onSelectionChange={(value) => bindMember(value as string, user)}
+              defaultSelectedKey={user.im_user?.id}
             >
               {(user) => (
                 <AutocompleteItem key={user.value} value={user.value}>
