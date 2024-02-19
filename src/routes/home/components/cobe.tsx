@@ -1,9 +1,11 @@
 import type { SVGProps } from 'react';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import createGlobe from 'cobe';
 import { useSpring } from 'react-spring';
 import { useTranslation } from 'react-i18next';
+
+import VideoPlayer from './videoPlayer.tsx';
 
 import {
   SlackWhiteIcon,
@@ -12,8 +14,6 @@ import {
   TelegramIcon,
   YoutubeIcon,
 } from '@/components/icons';
-
-import { siteConfig } from '@/config';
 
 export const TextLogo = (props: SVGProps<SVGSVGElement>) => (
   <svg fill="none" viewBox="0 0 423 120" xmlns="http://www.w3.org/2000/svg" {...props}>
@@ -25,6 +25,7 @@ export const TextLogo = (props: SVGProps<SVGSVGElement>) => (
 );
 
 export const Cobe = () => {
+  const [showPopup, setShowPopup] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const canvasRef = useRef<any>();
   const pointerInteracting = useRef<number | null>(0);
@@ -39,6 +40,11 @@ export const Cobe = () => {
     },
   }));
   const { t } = useTranslation();
+
+  const handleClosePopup = () => {
+    setShowPopup(!showPopup);
+    console.log('~showPopup:', showPopup);
+  };
 
   useEffect(() => {
     let phi = 0;
@@ -87,10 +93,10 @@ export const Cobe = () => {
         position: 'relative',
         display: 'block',
       }}
-      href={siteConfig.links.bilibili}
-      target="_blank"
     >
+      {showPopup && <VideoPlayer onClose={handleClosePopup} />}
       <div
+        onClick={handleClosePopup}
         className={'group  cursor-pointer'}
         style={{
           width: '100%',
