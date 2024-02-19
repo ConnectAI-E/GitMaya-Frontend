@@ -19,7 +19,7 @@ export const Avatar = ({ email, name, avatarUrl }: AvatarProps) => {
   const { t } = useTranslation();
   const setAccount = useAccountStore.use.setAccount();
   const handleLogout = async () => {
-    setAccount({});
+    setAccount({} as Github.Account);
     await logout();
   };
   return (
