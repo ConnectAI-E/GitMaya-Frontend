@@ -18,8 +18,14 @@ export const bindTeamMember = (
   },
 ) => request.put(`/api/team/${team_id}/member`, data);
 
+//FIXME
 export const getPlatformMember = <T>(team_id: string, platform: string) =>
-  request.get<T>(`/api/team/${team_id}/${platform}/user`);
+  request.get<T>(`/api/team/${team_id}/${platform}/user`, {
+    params: {
+      page: 1,
+      size: 9999,
+    },
+  });
 
 export const installApp = (team_id: string, platform: string, data: unknown) =>
   request.post(`/api/team/${team_id}/${platform}/app`, data);
