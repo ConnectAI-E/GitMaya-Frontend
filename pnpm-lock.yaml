@@ -9,8 +9,8 @@ dependencies:
     specifier: ^2.2.9
     version: 2.2.9(@types/react@18.2.57)(framer-motion@10.18.0)(react-dom@18.2.0)(react@18.2.0)(tailwind-variants@0.1.19)(tailwindcss@3.4.1)
   ahooks:
-    specifier: ^3.7.8
-    version: 3.7.8(react@18.2.0)
+    specifier: ^3.7.10
+    version: 3.7.10(react@18.2.0)
   axios:
     specifier: ^1.6.5
     version: 1.6.5
@@ -5095,10 +5095,6 @@ packages:
       '@types/istanbul-lib-report': 3.0.3
     dev: false
 
-  /@types/js-cookie@2.2.7:
-    resolution: {integrity: sha512-aLkWa0C0vO5b4Sr798E26QgOkss68Un0bLjs7u9qxzPT5CG+8DuNTffWES58YzJs3hrVAOs1wonycqEBqNJubA==}
-    dev: false
-
   /@types/json-schema@7.0.15:
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
     dev: true
@@ -5428,19 +5424,13 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
-  /ahooks-v3-count@1.0.0:
-    resolution: {integrity: sha512-V7uUvAwnimu6eh/PED4mCDjE7tokeZQLKlxg9lCTMPhN+NjsSbtdacByVlR1oluXQzD3MOw55wylDmQo4+S9ZQ==}
-    dev: false
-
-  /ahooks@3.7.8(react@18.2.0):
-    resolution: {integrity: sha512-e/NMlQWoCjaUtncNFIZk3FG1ImSkV/JhScQSkTqnftakRwdfZWSw6zzoWSG9OMYqPNs2MguDYBUFFC6THelWXA==}
+  /ahooks@3.7.10(react@18.2.0):
+    resolution: {integrity: sha512-/HLYif7sFA/5qSuWKrwvjDbf3bq+sdaMrUWS7XGCDRWdC2FrG/i+u5LZdakMYc6UIgJTMQ7tGiJCV7sdU4kSIw==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.23.7
-      '@types/js-cookie': 2.2.7
-      ahooks-v3-count: 1.0.0
       dayjs: 1.11.10
       intersection-observer: 0.12.2
       js-cookie: 2.2.1
