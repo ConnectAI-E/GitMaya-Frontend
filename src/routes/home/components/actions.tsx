@@ -19,7 +19,7 @@ export const Actions: React.FC = () => {
       </div>
       <div className="mt-8" />
       <a
-        href="https://github.com/ConnectAI-E/GitMaya"
+        href="https://gitmaya-doc.netlify.app/"
         className="text-current opacity-70 text-sm"
         target="_blank"
       >
