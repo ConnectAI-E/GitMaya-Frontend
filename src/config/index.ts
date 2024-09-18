@@ -34,5 +34,6 @@ export const siteConfig = {
     bilibili: 'https://www.bilibili.com/video/BV1se411n7tD/',
     invitation:
       'https://fork-way.feishu.cn/share/base/form/shrcnVMJP4h2BKi9zlnWEh7DOJB?iframeFrom=docx&ccm_open=iframe',
+    document: 'https://gitmaya-doc.netlify.app/',
   },
 };
